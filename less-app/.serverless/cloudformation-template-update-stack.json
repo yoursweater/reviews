@@ -11,6 +11,12 @@
         "LogGroupName": "/aws/lambda/less-app-dev-createReview"
       }
     },
+    "RetrieveReviewLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/less-app-dev-retrieveReview"
+      }
+    },
     "IamRoleLambdaExecution": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -53,6 +59,9 @@
                   "Resource": [
                     {
                       "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/less-app-dev-createReview:*"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/less-app-dev-retrieveReview:*"
                     }
                   ]
                 },
@@ -64,13 +73,17 @@
                   "Resource": [
                     {
                       "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/less-app-dev-createReview:*:*"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/less-app-dev-retrieveReview:*:*"
                     }
                   ]
                 },
                 {
                   "Effect": "Allow",
                   "Action": [
-                    "dynamodb:PutItem"
+                    "dynamodb:PutItem",
+                    "dynamodb:Scan"
                   ],
                   "Resource": "arn:aws:dynamodb:us-east-1:589745751216:table/reviews"
                 }
@@ -99,7 +112,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/less-app/dev/1544990325286-2018-12-16T19:58:45.286Z/less-app.zip"
+          "S3Key": "serverless/less-app/dev/1544992762031-2018-12-16T20:39:22.031Z/less-app.zip"
         },
         "FunctionName": "less-app-dev-createReview",
         "Handler": "create.run",
@@ -118,14 +131,50 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "CreateReviewLambdaVersion3GmHbNAT2B6RVPaUq78smCMH9XFRi8fyMVAO9GvnzMU": {
+    "CreateReviewLambdaVersionROWKLqMdZRXgLe9Q3T956D39KpxZRnglhNBKbb7DKg": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateReviewLambdaFunction"
         },
-        "CodeSha256": "takrLJ6bM8I4nCc1ojVi+86LTv/tI/+93z9ugs93Ho0="
+        "CodeSha256": "es14zINgz81Pffm8PcbLuN/ODikoeSVCBuosAMlswwI="
+      }
+    },
+    "RetrieveReviewLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/less-app/dev/1544992762031-2018-12-16T20:39:22.031Z/less-app.zip"
+        },
+        "FunctionName": "less-app-dev-retrieveReview",
+        "Handler": "retrieve.run",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs8.10",
+        "Timeout": 6
+      },
+      "DependsOn": [
+        "RetrieveReviewLogGroup",
+        "IamRoleLambdaExecution"
+      ]
+    },
+    "RetrieveReviewLambdaVersionWUajgj9npQxoozIvW7QVcLue80umy09D0aFoXsIlY": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "RetrieveReviewLambdaFunction"
+        },
+        "CodeSha256": "es14zINgz81Pffm8PcbLuN/ODikoeSVCBuosAMlswwI="
       }
     },
     "ApiGatewayRestApi": {
@@ -197,7 +246,50 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1544990325333": {
+    "ApiGatewayMethodReviewsGet": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceReviews"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "RetrieveReviewLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayDeployment1544992762118": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -206,7 +298,8 @@
         "StageName": "dev"
       },
       "DependsOn": [
-        "ApiGatewayMethodReviewsPost"
+        "ApiGatewayMethodReviewsPost",
+        "ApiGatewayMethodReviewsGet"
       ]
     },
     "CreateReviewLambdaPermissionApiGateway": {
@@ -215,6 +308,53 @@
         "FunctionName": {
           "Fn::GetAtt": [
             "CreateReviewLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": {
+          "Fn::Join": [
+            "",
+            [
+              "apigateway.",
+              {
+                "Ref": "AWS::URLSuffix"
+              }
+            ]
+          ]
+        },
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "RetrieveReviewLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RetrieveReviewLambdaFunction",
             "Arn"
           ]
         },
@@ -288,7 +428,13 @@
     "CreateReviewLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateReviewLambdaVersion3GmHbNAT2B6RVPaUq78smCMH9XFRi8fyMVAO9GvnzMU"
+        "Ref": "CreateReviewLambdaVersionROWKLqMdZRXgLe9Q3T956D39KpxZRnglhNBKbb7DKg"
+      }
+    },
+    "RetrieveReviewLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "RetrieveReviewLambdaVersionWUajgj9npQxoozIvW7QVcLue80umy09D0aFoXsIlY"
       }
     },
     "ServiceEndpoint": {

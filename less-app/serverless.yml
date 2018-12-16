@@ -6,6 +6,7 @@ provider:
   - Effect: Allow
     Action:
       - dynamodb:PutItem
+      - dynamodb:Scan
     Resource: arn:aws:dynamodb:us-east-1:589745751216:table/reviews
 functions:
   createReview:
@@ -14,6 +15,12 @@ functions:
     - http:            
         path: reviews           
         method: post
+  retrieveReview:
+    handler: retrieve.run
+    events:        
+    - http:            
+        path: reviews           
+        method: get
 resources:   
   Resources:     
     ReviewTable:       
