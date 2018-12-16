@@ -112,7 +112,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/less-app/dev/1544992762031-2018-12-16T20:39:22.031Z/less-app.zip"
+          "S3Key": "serverless/less-app/dev/1544995227909-2018-12-16T21:20:27.909Z/less-app.zip"
         },
         "FunctionName": "less-app-dev-createReview",
         "Handler": "create.run",
@@ -131,14 +131,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "CreateReviewLambdaVersionROWKLqMdZRXgLe9Q3T956D39KpxZRnglhNBKbb7DKg": {
+    "CreateReviewLambdaVersionaris7CdPUvdecE3fAPGauwvl7ZOKeQAtDKA7noObpfI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateReviewLambdaFunction"
         },
-        "CodeSha256": "es14zINgz81Pffm8PcbLuN/ODikoeSVCBuosAMlswwI="
+        "CodeSha256": "ex7/oS8dutlVJzvcE9we2QHUU6+jAy6Hw3b8UtPb/Q4="
       }
     },
     "RetrieveReviewLambdaFunction": {
@@ -148,7 +148,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/less-app/dev/1544992762031-2018-12-16T20:39:22.031Z/less-app.zip"
+          "S3Key": "serverless/less-app/dev/1544995227909-2018-12-16T21:20:27.909Z/less-app.zip"
         },
         "FunctionName": "less-app-dev-retrieveReview",
         "Handler": "retrieve.run",
@@ -167,14 +167,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "RetrieveReviewLambdaVersionWUajgj9npQxoozIvW7QVcLue80umy09D0aFoXsIlY": {
+    "RetrieveReviewLambdaVersionc7F3LhD9K3E9BpAOVc9OWkNYdRdHERvbB5kqdDCzbk": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "RetrieveReviewLambdaFunction"
         },
-        "CodeSha256": "es14zINgz81Pffm8PcbLuN/ODikoeSVCBuosAMlswwI="
+        "CodeSha256": "ex7/oS8dutlVJzvcE9we2QHUU6+jAy6Hw3b8UtPb/Q4="
       }
     },
     "ApiGatewayRestApi": {
@@ -289,7 +289,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1544992762118": {
+    "ApiGatewayDeployment1544995228021": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -428,13 +428,13 @@
     "CreateReviewLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateReviewLambdaVersionROWKLqMdZRXgLe9Q3T956D39KpxZRnglhNBKbb7DKg"
+        "Ref": "CreateReviewLambdaVersionaris7CdPUvdecE3fAPGauwvl7ZOKeQAtDKA7noObpfI"
       }
     },
     "RetrieveReviewLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "RetrieveReviewLambdaVersionWUajgj9npQxoozIvW7QVcLue80umy09D0aFoXsIlY"
+        "Ref": "RetrieveReviewLambdaVersionc7F3LhD9K3E9BpAOVc9OWkNYdRdHERvbB5kqdDCzbk"
       }
     },
     "ServiceEndpoint": {

@@ -12,6 +12,10 @@ module.exports.run = async (event) => {
     let response = await client.scan(params).promise();
     return {
       statusCode: 200,
-      body: JSON.stringify(response)
+      body: JSON.stringify(response),
+      headers: {
+        'Access-Control-Allow-Origin':'*' ,
+        "Access-Control-Allow-Headers":'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
+      }
     };
   };
