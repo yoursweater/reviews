@@ -1,0 +1,33 @@
+service: less-app
+provider:
+  name: aws
+  runtime: nodejs8.10
+  iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - dynamodb:PutItem
+    Resource: arn:aws:dynamodb:us-east-1:589745751216:table/reviews
+functions:
+  createReview:
+    handler: create.run
+    events:        
+    - http:            
+        path: reviews           
+        method: post
+resources:   
+  Resources:     
+    ReviewTable:       
+      Type: 'AWS::DynamoDB::Table'       
+      Properties:        
+        TableName: reviews        
+        AttributeDefinitions:           
+          -             
+            AttributeName: id             
+            AttributeType: S         
+        KeySchema:           
+          -             
+            AttributeName: id             
+            KeyType: HASH         
+        ProvisionedThroughput:            
+          ReadCapacityUnits: 1           
+          WriteCapacityUnits: 1
