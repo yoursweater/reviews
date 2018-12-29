@@ -1,18 +1,40 @@
 .reviewlist-list {
     list-style-type: none;
 
+    p {
+        margin: 0;
+    }
+
     .reviewlist-item-container {
-        display: flex;
-        padding: 8px;
+        display: grid;
+        // padding: 8px;
         width: 70%;
         border: 1px solid black;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: 
+        "name name name info stars"
+        "desc desc desc desc stars";
 
         .reviewlist-item-ranking {
             padding: 8px;
         }
 
+        .reviewlist-item-info {
+            grid-area: info;
+        }
+
+        .reviewlist-item-description {
+            grid-area: desc;
+        }
+
+        .reviewlist-items-stars {
+            grid-area: stars;
+        }
+
         .reviewlist-item-name {
             padding: 8px 0;
+            grid-area: name;
 
             .reviewlist-name {
                 margin: 0;

@@ -17,6 +17,16 @@ class ReviewList extends React.Component {
               <div className='reviewlist-item-name'>
                   <h4 className='reviewlist-name'>{review.name}</h4>
               </div>
+              <div className='reviewlist-item-info'>
+                  <p>{review.cuisine}</p>
+                  <p>{review.price}</p>
+              </div>
+              <div className='reviewlist-item-description'>
+                  <p>{review.description}</p>
+              </div>
+              <div className='reviewlist-item-stars'>
+                  {review.stars}
+              </div>
           </div>
        </li>
     )
