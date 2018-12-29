@@ -39,7 +39,7 @@ class PostReview extends React.Component {
             console.log('Successfully posted!')
             console.log(data)
           });
-        event.preventDefault();
+        // event.preventDefault();
       }
     
       render() {
