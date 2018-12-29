@@ -11,7 +11,10 @@ module.exports.run = async (event) => {
         name: data.name,
         stars: data.stars,
         topfive: data.topfive,
-        checked: false
+        description: data.description,
+        cuisine: data.cuisine,
+        price: data.price,
+        location: data.location
       }
     };
     await client.put(params).promise();
