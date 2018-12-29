@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+import ReviewList from './ReviewList/ReviewList';
+import TopFive from './TopFive/TopFive';
+import PostReview from './PostReview/PostReview';
+import './App.scss';
 
 class App extends Component {
   constructor(props) {
@@ -30,35 +33,21 @@ class App extends Component {
     return (
       <div className="App">
         <div id='main'>
-          <ReviewList reviews={this.state.reviews} />
+          <h1 className='app-header'>Dan and May's Restaurant Reviews</h1>
+            <div className='app-container'>
+                <div className='left-section'>
+                   <TopFive reviews={this.state.reviews} />
+                   <PostReview />
+                </div>
+                <div className='right-section'>
+                   <ReviewList reviews={this.state.reviews} />
+                </div>
+            </div>
         </div>
       </div>
     );
   }
 }
 
-
-class ReviewList extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    const reviews = this.props.reviews
-    const reviewItems = reviews.map((review) => 
-      <li key={review.id}>{review.name}  - {review.stars}</li>
-    )
-
-    return (
-      <div>
-        <p>this loaded</p>
-        <ul>
-          {reviewItems}
-        </ul>
-      </div>
-    )
-  }
-
-}
 
 export default App;
