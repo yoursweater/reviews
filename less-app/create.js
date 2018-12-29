@@ -20,6 +20,9 @@ module.exports.run = async (event) => {
     await client.put(params).promise();
     return {
       statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      },
       body: JSON.stringify(data)
     };
   };
