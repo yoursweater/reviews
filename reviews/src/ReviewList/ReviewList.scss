@@ -7,7 +7,7 @@
 
     .reviewlist-item-container {
         display: grid;
-        // padding: 8px;
+        padding: 4px;
         width: 70%;
         border: 1px solid black;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -26,10 +26,17 @@
 
         .reviewlist-item-description {
             grid-area: desc;
+            font-size: .8em;
+            display: flex;
+            align-items: center;
         }
 
-        .reviewlist-items-stars {
+        .reviewlist-item-stars {
             grid-area: stars;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-left: 1px solid black;
         }
 
         .reviewlist-item-name {

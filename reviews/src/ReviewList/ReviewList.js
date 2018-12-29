@@ -3,12 +3,30 @@ import './ReviewList.scss';
 
 class ReviewList extends React.Component {
 
+  makePricing(price) {
+      let priceString = ""
+      for (let i = 0; i < price; i++) {
+        priceString = priceString + "$"
+      }
+      return priceString
+  }
+
+  makeStars(stars) {
+    let starString = ""
+    for (let i = 0; i < stars; i++) {
+      starString = starString + String.fromCharCode(9733)
+    }
+    return starString
+  }
+
   makeReviews(reviews) {
 
     //sort the reviews by number of stars
     let filteredItems = reviews.sort((a, b) => {
       return a.stars - b.stars
     })
+
+    // let priceString = this.makePricing(reviews.price)
 
     //create the list items for display
     const reviewItems = filteredItems.map((review) => 
@@ -19,13 +37,13 @@ class ReviewList extends React.Component {
               </div>
               <div className='reviewlist-item-info'>
                   <p>{review.cuisine}</p>
-                  <p>{review.price}</p>
+                  <p>{this.makePricing.call(this, review.price)}</p>
               </div>
               <div className='reviewlist-item-description'>
                   <p>{review.description}</p>
               </div>
               <div className='reviewlist-item-stars'>
-                  {review.stars}
+                  {this.makeStars.call(this, review.stars)}
               </div>
           </div>
        </li>
