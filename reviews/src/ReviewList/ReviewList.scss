@@ -1,0 +1,26 @@
+.reviewlist-list {
+    list-style-type: none;
+
+    .reviewlist-item-container {
+        display: flex;
+        padding: 8px;
+        width: 70%;
+        border: 1px solid black;
+
+        .reviewlist-item-ranking {
+            padding: 8px;
+        }
+
+        .reviewlist-item-name {
+            padding: 8px 0;
+
+            .reviewlist-name {
+                margin: 0;
+            }
+        }
+    }
+}
+
+.reviewlist-title {
+    padding-left: 40px;
+}

@@ -1,0 +1,22 @@
+.topfive-list {
+    list-style-type: none;
+    width: 80%;
+    border: 1px solid black;
+    margin: 8px 0;
+
+    .topfive-item-container {
+        display: flex;
+
+        .topfive-item-ranking {
+            padding: 8px;
+        }
+
+        .topfive-item-name {
+            padding: 8px 0;
+        }
+    }
+}
+
+.topfive-title {
+    padding-left: 40px;
+}
