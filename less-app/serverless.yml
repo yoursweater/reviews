@@ -15,6 +15,12 @@ functions:
     - http:            
         path: reviews           
         method: post
+  removeReview:
+    handler: remove.run
+    events:        
+    - http:            
+        path: reviews           
+        method: delete
   retrieveReview:
     handler: retrieve.run
     events:        
