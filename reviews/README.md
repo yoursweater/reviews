@@ -4,7 +4,11 @@
 
 When in the reviews directory:
 
-`npm run build && aws s3 syncbuild/ s3://restaurant-reviews1294`
+`npm run build`
+
+then 
+
+`aws s3 sync build/ s3://restaurant-reviews1294`
 
 ### How to update the Lambda functions
 
