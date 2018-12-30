@@ -38,6 +38,16 @@
             justify-content: center;
             align-items: center;
             border-left: 1px solid black;
+            position: relative;
+
+             .delete-btn {
+                 position: absolute;
+                 top: 0;
+                 right: 0;
+                 padding: 2px 4px;
+                 cursor: pointer;
+                 z-index: 10;
+             }
         }
 
         .reviewlist-item-name {

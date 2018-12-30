@@ -1,0 +1,22 @@
+.maytopfive-list {
+    list-style-type: none;
+    width: 80%;
+    border: 1px solid black;
+    margin: 8px 0;
+
+    .maytopfive-item-container {
+        display: flex;
+
+        .maytopfive-item-ranking {
+            padding: 8px;
+        }
+
+        .maytopfive-item-name {
+            padding: 8px 0;
+        }
+    }
+}
+
+.maytopfive-title {
+    padding-left: 40px;
+}

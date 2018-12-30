@@ -1,25 +1,25 @@
 import React from 'react';
-import './TopFive.scss';
+import './WallOfShame.scss';
 
-class TopFive extends React.Component {
+class WallOfShame extends React.Component {
 
     makeReviews(reviews) {
 
       //grab only the reviews that have a top five numerical rating, then sort by score from low to high
       let filteredItems = reviews.filter(review => {
-        return review.topfive
+        return review.wallofshame
       }).sort((a, b) => {
-        return a.topfive - b.topfive
+        return a.wallofshame - b.wallofshame
       })
 
       //create the list items for display
       const reviewItems = filteredItems.map((review) => 
-         <li className='topfive-list' key={review.id}>
-            <div className='topfive-item-container'>
-                <div className='topfive-item-ranking'>
-                    {review.topfive}
+         <li className='wallofshame-list' key={review.id}>
+            <div className='wallofshame-item-container'>
+                <div className='wallofshame-item-ranking'>
+                    {review.wallofshame}
                 </div>
-                <div className='topfive-item-name'>
+                <div className='wallofshame-item-name'>
                     {review.name}
                 </div>
             </div>
@@ -33,7 +33,7 @@ class TopFive extends React.Component {
 
         return (
           <div>
-              <h3 className='topfive-title'>Dan's Top Five</h3>
+              <h3 className='wallofshame-title'>Dan's Top Five</h3>
               <ul>
                  {reviewItems}
               </ul>
@@ -43,4 +43,4 @@ class TopFive extends React.Component {
   
   }
 
-  export default TopFive;
+  export default WallOfShame;

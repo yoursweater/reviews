@@ -1,0 +1,22 @@
+.wallofshame-list {
+    list-style-type: none;
+    width: 80%;
+    border: 1px solid black;
+    margin: 8px 0;
+
+    .wallofshame-item-container {
+        display: flex;
+
+        .wallofshame-item-ranking {
+            padding: 8px;
+        }
+
+        .wallofshame-item-name {
+            padding: 8px 0;
+        }
+    }
+}
+
+.wallofshame-title {
+    padding-left: 40px;
+}

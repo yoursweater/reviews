@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import ReviewList from './ReviewList/ReviewList';
 import TopFive from './TopFive/TopFive';
+import MayTopFive from './MayTopFive/MayTopFive';
 import PostReview from './PostReview/PostReview';
 import './App.scss';
+import WallOfShame from './WallOfShame/WallOfShame';
 
 class App extends Component {
   constructor(props) {
@@ -37,6 +39,9 @@ class App extends Component {
             <div className='app-container'>
                 <div className='left-section'>
                    <TopFive reviews={this.state.reviews} />
+                   <MayTopFive reviews={this.state.reviews} />
+                   <WallOfShame reviews={this.state.reviews} />
+                   
                    <PostReview />
                 </div>
                 <div className='right-section'>
