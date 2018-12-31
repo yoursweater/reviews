@@ -16,6 +16,14 @@ Make and save your edits, then in the less-app directory:
 
 `sls deploy`
 
+If there is an error, you can redeploy after using
+
+`sls remove`
+
+### To get the endpoints if not using the API Gateway
+
+`sls info`
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -17,13 +17,15 @@ class App extends Component {
 
   componentDidMount() {
 
-    fetch('https://bmuorcwtq3.execute-api.us-east-1.amazonaws.com/dev/reviews', {
+    fetch('https://n28a4s7dc1.execute-api.us-east-1.amazonaws.com/dev/reviews', {
       method: 'GET',
       mode: 'cors'
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data.Items)
+      // let cleanData = JSON.parse(data.body)
+      // console.log(cleanData.Items)
+      console.log(data)
       this.setState({
         reviews: data.Items
       })

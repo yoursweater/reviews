@@ -33,7 +33,7 @@ class WallOfShame extends React.Component {
 
         return (
           <div>
-              <h3 className='wallofshame-title'>Dan's Top Five</h3>
+              <h3 className='wallofshame-title'>Wall of Shame</h3>
               <ul>
                  {reviewItems}
               </ul>

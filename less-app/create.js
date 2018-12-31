@@ -3,7 +3,9 @@ const client = new AWS.DynamoDB.DocumentClient();
 const uuid = require("uuid/v4");
 
 module.exports.run = async (event) => {
+  console.log(event)
     const data = JSON.parse(event.body);
+    console.log(data)
     const params = {
       TableName: "reviews",
       Item: {
@@ -11,6 +13,8 @@ module.exports.run = async (event) => {
         name: data.name,
         stars: data.stars,
         topfive: data.topfive,
+        maytopfive: data.maytopfive,
+        wallofshame: data.wallofshame,
         description: data.description,
         cuisine: data.cuisine,
         price: data.price,

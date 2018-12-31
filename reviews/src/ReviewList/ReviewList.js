@@ -22,6 +22,13 @@ class ReviewList extends React.Component {
   deleteEntry(id) {
     console.log('deleting!')
     console.log(id)
+    fetch('https://n28a4s7dc1.execute-api.us-east-1.amazonaws.com/dev/reviews', {
+      method: 'DELETE',
+      mode: 'cors',
+      body: id
+    }).then(()=>{
+      window.location.reload()
+    })
   }
 
   makeReviews(reviews) {
@@ -48,7 +55,7 @@ class ReviewList extends React.Component {
                   <p>{review.description}</p>
               </div>
               <div className='reviewlist-item-stars'>
-                  <span className='delete-btn' onClick={this.deleteEntry(review.id)}>X</span>
+                  <span className='delete-btn' onClick={()=>this.deleteEntry(review.id)}>X</span>
                   {this.makeStars.call(this, review.stars)}
               </div>
           </div>

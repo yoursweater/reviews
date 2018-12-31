@@ -15,7 +15,8 @@
           "Effect": "Allow",
           "Action": [
             "dynamodb:PutItem",
-            "dynamodb:Scan"
+            "dynamodb:Scan",
+            "dynamodb:DeleteItem"
           ],
           "Resource": "arn:aws:dynamodb:us-east-1:589745751216:table/reviews"
         }
@@ -143,7 +144,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/less-app/dev/1546206637522-2018-12-30T21:50:37.522Z/less-app.zip"
+                "S3Key": "serverless/less-app/dev/1546215714659-2018-12-31T00:21:54.659Z/less-app.zip"
               },
               "FunctionName": "less-app-dev-createReview",
               "Handler": "create.run",
@@ -162,14 +163,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "CreateReviewLambdaVersionFJKKBHrzxvgUiYzmnFMqxTHLxO6XpFGTCklQ5RVs": {
+          "CreateReviewLambdaVersion7NyFGObmqErecsSGl0IDNLmSl5jxJbmFxbctdPao30k": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateReviewLambdaFunction"
               },
-              "CodeSha256": "d5BmAsirgoo9ljZ0ah21CrGbMSuBlvTEtMQ6Fzb1OaU="
+              "CodeSha256": "FTFR/c7ls8+YrBgHdYNxCo9duZQQTSZOD9ty3lN9lFs="
             }
           },
           "RemoveReviewLambdaFunction": {
@@ -179,7 +180,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/less-app/dev/1546206637522-2018-12-30T21:50:37.522Z/less-app.zip"
+                "S3Key": "serverless/less-app/dev/1546215714659-2018-12-31T00:21:54.659Z/less-app.zip"
               },
               "FunctionName": "less-app-dev-removeReview",
               "Handler": "remove.run",
@@ -198,14 +199,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "RemoveReviewLambdaVersionmhIV590piCHxHTZNOCeGCgS0jqbtRWmBR3d8iSypDAI": {
+          "RemoveReviewLambdaVersion9i4An3yTtP3nRzJ9JQyLaysDdoHQK9bP7fKianAzfJ4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "RemoveReviewLambdaFunction"
               },
-              "CodeSha256": "d5BmAsirgoo9ljZ0ah21CrGbMSuBlvTEtMQ6Fzb1OaU="
+              "CodeSha256": "FTFR/c7ls8+YrBgHdYNxCo9duZQQTSZOD9ty3lN9lFs="
             }
           },
           "RetrieveReviewLambdaFunction": {
@@ -215,7 +216,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/less-app/dev/1546206637522-2018-12-30T21:50:37.522Z/less-app.zip"
+                "S3Key": "serverless/less-app/dev/1546215714659-2018-12-31T00:21:54.659Z/less-app.zip"
               },
               "FunctionName": "less-app-dev-retrieveReview",
               "Handler": "retrieve.run",
@@ -234,14 +235,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "RetrieveReviewLambdaVersionZoZP99vyk3C3x65lNnFMKQ8M2dOMBVW2UTt7GjHUA": {
+          "RetrieveReviewLambdaVersionKWlKmqBpHTJ4QW1i4Hi4Iq62pTIvI440qjDLZJUC5I0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "RetrieveReviewLambdaFunction"
               },
-              "CodeSha256": "d5BmAsirgoo9ljZ0ah21CrGbMSuBlvTEtMQ6Fzb1OaU="
+              "CodeSha256": "FTFR/c7ls8+YrBgHdYNxCo9duZQQTSZOD9ty3lN9lFs="
             }
           },
           "ApiGatewayRestApi": {
@@ -265,6 +266,53 @@
                 ]
               },
               "PathPart": "reviews",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodReviewsOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true,
+                    "method.response.header.Access-Control-Allow-Credentials": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,DELETE,POST'",
+                      "method.response.header.Access-Control-Allow-Credentials": "'false'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": ""
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceReviews"
+              },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -399,7 +447,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1546206637653": {
+          "ApiGatewayDeployment1546215714808": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -408,6 +456,7 @@
               "StageName": "dev"
             },
             "DependsOn": [
+              "ApiGatewayMethodReviewsOptions",
               "ApiGatewayMethodReviewsPost",
               "ApiGatewayMethodReviewsDelete",
               "ApiGatewayMethodReviewsGet"
@@ -586,19 +635,19 @@
           "CreateReviewLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateReviewLambdaVersionFJKKBHrzxvgUiYzmnFMqxTHLxO6XpFGTCklQ5RVs"
+              "Ref": "CreateReviewLambdaVersion7NyFGObmqErecsSGl0IDNLmSl5jxJbmFxbctdPao30k"
             }
           },
           "RemoveReviewLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "RemoveReviewLambdaVersionmhIV590piCHxHTZNOCeGCgS0jqbtRWmBR3d8iSypDAI"
+              "Ref": "RemoveReviewLambdaVersion9i4An3yTtP3nRzJ9JQyLaysDdoHQK9bP7fKianAzfJ4"
             }
           },
           "RetrieveReviewLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "RetrieveReviewLambdaVersionZoZP99vyk3C3x65lNnFMKQ8M2dOMBVW2UTt7GjHUA"
+              "Ref": "RetrieveReviewLambdaVersionKWlKmqBpHTJ4QW1i4Hi4Iq62pTIvI440qjDLZJUC5I0"
             }
           },
           "ServiceEndpoint": {
@@ -649,6 +698,25 @@
             "http": {
               "path": "reviews",
               "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
               "integration": "AWS_PROXY"
             }
           }
@@ -667,6 +735,25 @@
             "http": {
               "path": "reviews",
               "method": "delete",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "DELETE"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
               "integration": "AWS_PROXY"
             }
           }
@@ -685,6 +772,25 @@
             "http": {
               "path": "reviews",
               "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
               "integration": "AWS_PROXY"
             }
           }
@@ -728,7 +834,7 @@
     "artifact": "/Users/daneversen/Documents/serverless/less-app/.serverless/less-app.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/less-app/dev/1546206637522-2018-12-30T21:50:37.522Z",
+    "artifactDirectoryName": "serverless/less-app/dev/1546215714659-2018-12-31T00:21:54.659Z",
     "artifact": "less-app.zip"
   }
 }
