@@ -7,7 +7,7 @@ class TopFive extends React.Component {
 
       //grab only the reviews that have a top five numerical rating, then sort by score from low to high
       let filteredItems = reviews.filter(review => {
-        return review.topfive
+        return review.topfive && review.topfive > 0
       }).sort((a, b) => {
         return a.topfive - b.topfive
       })

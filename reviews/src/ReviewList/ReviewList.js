@@ -35,7 +35,7 @@ class ReviewList extends React.Component {
 
     //sort the reviews by number of stars
     let filteredItems = reviews.sort((a, b) => {
-      return a.stars - b.stars
+      return b.stars - a.stars
     })
 
     // let priceString = this.makePricing(reviews.price)
