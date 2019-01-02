@@ -1,6 +1,9 @@
 import React from 'react';
 import './PostReview.scss';
+
 import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
 
 class PostReview extends React.Component {
     constructor(props) {
@@ -8,9 +11,9 @@ class PostReview extends React.Component {
         this.state = {
             name: '',
             stars: '',
-            topfive: '',
-            maytopfive: '',
-            wallofshame: '',
+            topfive: '0',
+            maytopfive: '0',
+            wallofshame: '0',
             description: '',
             cuisine: '',
             price: '',
@@ -45,55 +48,149 @@ class PostReview extends React.Component {
           });
         event.preventDefault();
       }
+
     
       render() {
         return (
           <form className='submit-form' onSubmit={this.handleSubmit}>
-            <label>
-              Name:
-              <input type="text" name="name" value={this.state.name} onChange={this.handleChange} />
-            </label>
+            <TextField
+                label="Name"
+                type="text"
+                name="name"
+                fullWidth
+                value={this.state.name}
+                onChange={this.handleChange}
+                margin="normal"
+                variant="outlined"
+              />
                 <br />
-            <label>
-              Stars:
-              <input type="number" name="stars" value={this.state.stars} onChange={this.handleChange} />
-            </label>
+            <TextField
+                label="Stars"
+                select
+                value={this.state.stars}
+                name="stars"
+                fullWidth
+                onChange={this.handleChange}
+                margin="normal"
+                variant="outlined"
+                className="stars-select"
+                id="stars-select"
+              >
+              
+                  <option key="1" value="1">
+                     &#9733;
+                  </option>
+                  <option key="2" value="2">
+                     &#9733;&#9733;
+                  </option>
+                  <option key="3" value="3">
+                     &#9733;&#9733;&#9733;
+                  </option>
+                  <option key="4" value="4">
+                     &#9733;&#9733;&#9733;&#9733;
+                  </option>
+                  <option key="5" value="5">
+                     &#9733;&#9733;&#9733;&#9733;&#9733;
+                  </option>
+     
+                </TextField>
                  <br />
-            <label>
-              Dan's Top Five? (leave blank if not a top five restaurant):
-              <input type="number" name="topfive" value={this.state.topfive} onChange={this.handleChange} />
-            </label>
+
+
+            <TextField
+                label="Description"
+                type="text"
+                name="description"
+                fullWidth
+                value={this.state.description}
+                onChange={this.handleChange}
+                margin="normal"
+                variant="outlined"
+              />
             <br />
-            <label>
-              May's Top Five? (leave blank if not a top five restaurant):
-              <input type="number" name="maytopfive" value={this.state.maytopfive} onChange={this.handleChange} />
-            </label>
+            <TextField
+                label="Cuisine"
+                type="text"
+                name="cuisine"
+                fullWidth
+                value={this.state.cuisine}
+                onChange={this.handleChange}
+                margin="normal"
+                variant="outlined"
+              />
             <br />
-            <label>
-              Wall of Shame? (leave blank if not awful):
-              <input type="number" name="wallofshame" value={this.state.wallofshame} onChange={this.handleChange} />
-            </label>
+
+            <TextField
+                label="Price"
+                select
+                value={this.state.price}
+                name="price"
+                fullWidth
+                onChange={this.handleChange}
+                margin="normal"
+                variant="outlined"
+
+              >
+              
+                  <option key="1" value="1">
+                     $
+                  </option>
+                  <option key="2" value="2">
+                     $$
+                  </option>
+                  <option key="3" value="3">
+                     $$$
+                  </option>
+                  <option key="4" value="4">
+                     $$$$
+                  </option>
+  
+                </TextField>
             <br />
-            <label>
-              Description:
-              <input type="text" name="description" value={this.state.description} onChange={this.handleChange} />
-            </label>
+            <TextField
+                label="Location"
+                type="text"
+                name="location"
+                fullWidth
+                value={this.state.location}
+                onChange={this.handleChange}
+                margin="normal"
+                variant="outlined"
+              />
             <br />
-            <label>
-              Cuisine:
-              <input type="text" name="cuisine" value={this.state.cuisine} onChange={this.handleChange} />
-            </label>
+            <TextField
+                label="Dan's Top Five? (leave alone if false)"
+                type="number"
+                name="topfive"
+                fullWidth
+                value={this.state.topfive}
+                onChange={this.handleChange}
+                margin="normal"
+                variant="outlined"
+              />
             <br />
-            <label>
-              Price:
-              <input type="number" name="price" value={this.state.price} onChange={this.handleChange} />
-            </label>
+            <TextField
+                label="May's Top Five? (leave alone if false)"
+                type="number"
+                name="maytopfive"
+                fullWidth
+                value={this.state.maytopfive}
+                onChange={this.handleChange}
+                margin="normal"
+                variant="outlined"
+              />
             <br />
-            <label>
-              Location:
-              <input type="text" name="location" value={this.state.location} onChange={this.handleChange} />
-            </label>
-            <br />
+            <TextField
+                label="Wall of Shame (leave alone if false)"
+                type="number"
+                name="wallofshame"
+                fullWidth
+                value={this.state.wallofshame}
+                onChange={this.handleChange}
+                margin="normal"
+                variant="outlined"
+              />
+              <br />
             <input type="submit" value="Submit" />
           </form>
         );
