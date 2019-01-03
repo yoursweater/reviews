@@ -4,11 +4,20 @@
   margin: 0;
   padding-top: 20px;
   padding-bottom: 20px;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 2.8em;
+  color: #1e88e5;
 }
 
 .app-container {
   display: flex;
+  flex-direction: column;
 
+  .inner-app-container {
+    width: 100%;
+    display: flex;
+  }
   .left-section {
     width: 30%;
     min-width: 30%;
@@ -30,35 +39,6 @@
 }
 
 
-// .App {
-//   text-align: center;
-// }
-
-// .App-logo {
-//   animation: App-logo-spin infinite 20s linear;
-//   height: 40vmin;
-// }
-
-// .App-header {
-//   background-color: #282c34;
-//   min-height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: calc(10px + 2vmin);
-//   color: white;
-// }
-
-// .App-link {
-//   color: #61dafb;
-// }
-
-// @keyframes App-logo-spin {
-//   from {
-//     transform: rotate(0deg);
-//   }
-//   to {
-//     transform: rotate(360deg);
-//   }
-// }
+* {
+  font-family: 'Arvo', serif;
+}

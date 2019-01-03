@@ -48,8 +48,8 @@ class ReviewList extends React.Component {
                   <h4 className='reviewlist-name'>{review.name}</h4>
               </div>
               <div className='reviewlist-item-info'>
-                  <p>{review.cuisine}</p>
-                  <p>{this.makePricing.call(this, review.price)}</p>
+                  <p className='side-info'>{review.cuisine}</p>
+                  <p className='side-info'>{this.makePricing.call(this, review.price)}</p>
               </div>
               <div className='reviewlist-item-description'>
                   <p>{review.description}</p>

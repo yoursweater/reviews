@@ -8,9 +8,13 @@
 
     .reviewlist-item-container {
         display: grid;
-        padding: 4px;
+        // padding: 4px;
         width: 70%;
-        border: 1px solid black;
+        // border: 1px solid black;
+        border-radius: 8px;
+        border: 1px solid lightgrey;
+        box-shadow: 3px 2px 5px 2px rgba(94, 93, 94, 0.37);
+        padding: 10px;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr;
         grid-template-areas: 
@@ -23,6 +27,7 @@
 
         .reviewlist-item-info {
             grid-area: info;
+            color: grey;
         }
 
         .reviewlist-item-description {
@@ -37,8 +42,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border-left: 1px solid black;
+            border-left: 1px solid lightgrey;
             position: relative;
+            color: #fdd835;
+            font-size: 1.4em;
 
              .delete-btn {
                  position: absolute;
@@ -47,6 +54,8 @@
                  padding: 2px 4px;
                  cursor: pointer;
                  z-index: 10;
+                 color: lightgrey;
+                 font-size: 14px;
              }
         }
 
@@ -63,4 +72,6 @@
 
 .reviewlist-title {
     padding-left: 40px;
+    font-size: 1.6em;
+    color: #42a5f5;
 }

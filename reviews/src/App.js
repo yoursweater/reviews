@@ -39,15 +39,19 @@ class App extends Component {
         <div id='main'>
           <h1 className='app-header'>Dan and May's Restaurant Reviews</h1>
             <div className='app-container'>
-                <div className='left-section'>
-                   <TopFive reviews={this.state.reviews} />
-                   <MayTopFive reviews={this.state.reviews} />
-                   <WallOfShame reviews={this.state.reviews} />
-                   
-                   <PostReview />
-                </div>
-                <div className='right-section'>
-                   <ReviewList reviews={this.state.reviews} />
+                <div className='inner-app-container'>
+                  <div className='left-section'>
+                    <TopFive reviews={this.state.reviews} />
+                    <MayTopFive reviews={this.state.reviews} />
+                    <WallOfShame reviews={this.state.reviews} />
+      
+                  </div>
+                  <div className='right-section'>
+                    <ReviewList reviews={this.state.reviews} />
+                  </div>
+               </div>
+                <div className='post-container'>
+                  <PostReview />
                 </div>
             </div>
         </div>

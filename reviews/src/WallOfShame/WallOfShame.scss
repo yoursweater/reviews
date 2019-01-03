@@ -1,22 +1,42 @@
 .wallofshame-list {
     list-style-type: none;
     width: 80%;
-    border: 1px solid black;
+    // border: 1px solid black;
+
+    border-radius: 8px;
     margin: 8px 0;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(94,93,94,0.37);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(94,93,94,0.37);
+    box-shadow: 3px 2px 5px 2px rgba(94, 93, 94, 0.37);
+
 
     .wallofshame-item-container {
         display: flex;
 
         .wallofshame-item-ranking {
             padding: 8px;
+            background-color: #ff8a65;
+            color: white;
+            width: 20px;
+            text-align: center;
+            font-weight: 800;
+            border-radius: 8px 0 0 8px;
         }
 
         .wallofshame-item-name {
             padding: 8px 0;
+            width: 100%;
+            // background-color: #ffdd72;
+            // color: white;
+            font-weight: 800;
+            padding-left: 20px;
+            border-radius: 0 8px 8px 0;
         }
     }
 }
 
 .wallofshame-title {
     padding-left: 40px;
+    font-size: 1.6em;
+    color: #ff8a65;
 }

@@ -1,7 +1,28 @@
 .submit-form {
-    margin-left: 40px;
+    margin-right: 40px;
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.8em;
+    margin: 0 auto;
+}
+
+.post-title {
+    text-align: center;
+    border-top: 1px solid black;
+    padding-top: 20px;
 }
 
 #stars-select {
     min-width: 200px !important;
 }
+
+.left-post {
+    width: 40%;
+}
+
+.right-post {
+    width: 40%;
+    text-align: right;
+}
+
