@@ -6,6 +6,8 @@ import MayTopFive from './MayTopFive/MayTopFive';
 import PostReview from './PostReview/PostReview';
 import './App.scss';
 import WallOfShame from './WallOfShame/WallOfShame';
+import HTML5Backend from 'react-dnd-html5-backend'
+import { DragDropContext } from 'react-dnd'
 
 class App extends Component {
   constructor(props) {
@@ -61,4 +63,4 @@ class App extends Component {
 }
 
 
-export default App;
+export default App
