@@ -11,7 +11,7 @@ class TopFive extends React.Component {
     }
 
     makeReviews(reviews) {
-
+      console.log(reviews)
       //grab only the reviews that have a top five numerical rating, then sort by score from low to high
       let filteredItems = reviews.filter(review => {
         return review.topfive && review.topfive > 0
@@ -19,7 +19,7 @@ class TopFive extends React.Component {
 
       //create the list items for display
       const reviewItems = filteredItems.map((review, index) => 
-          <ReviewItem review={review} index={index} handleDrop={(id) => this.moveItem(id)} />
+          <ReviewItem review={review} index={index} />
       )
       return reviewItems
     }
