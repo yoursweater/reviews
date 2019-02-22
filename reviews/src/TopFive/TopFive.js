@@ -2,7 +2,7 @@ import React from 'react';
 import './TopFive.scss';
 import ReviewItem from './ReviewItem';
 import HTML5Backend from 'react-dnd-html5-backend'
-import { DragDropContext } from 'react-dnd'
+import { DragDropContext, connectDropTarget } from 'react-dnd'
 
 class TopFive extends React.Component {
 
@@ -19,7 +19,7 @@ class TopFive extends React.Component {
 
       //create the list items for display
       const reviewItems = filteredItems.map((review, index) => 
-          <ReviewItem review={review} index={index} />
+          <ReviewItem review={review} index={index} key={review.id} />
       )
       return reviewItems
     }

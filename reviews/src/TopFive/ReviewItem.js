@@ -9,7 +9,7 @@ class ReviewItem extends React.Component {
         console.log(this.props)
 
         return (
-            <li className='topfive-list' key={this.props.review.id}>
+            <li className='topfive-list'>
                <div className='topfive-item-container'>
                    <div className='topfive-item-ranking'>
                        {this.props.index + 1}
