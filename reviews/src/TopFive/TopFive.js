@@ -39,4 +39,4 @@ class TopFive extends React.Component {
   
   }
 
-  export default DragDropContext(HTML5Backend)(TopFive);
+  export default TopFive;
