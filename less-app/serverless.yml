@@ -31,6 +31,13 @@ functions:
         path: reviews           
         method: get
         cors: true
+  swapReview:
+    handler: swap.run
+    events:        
+    - http:            
+        path: reviews           
+        method: put
+        cors: true
 resources:   
   Resources:     
     ReviewTable:       

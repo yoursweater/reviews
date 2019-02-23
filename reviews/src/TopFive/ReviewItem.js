@@ -5,11 +5,15 @@ import { DragSource } from 'react-dnd';
 class ReviewItem extends React.Component {
     
     render() {
-        const {isDragging, connectDragSource, review} = this.props
-        console.log(this.props)
+        // const {isDragging, connectDragSource, review} = this.props
+        // console.log(this.props)
 
         return (
-            <li className='topfive-list'>
+            <li draggable
+            onDrag={this.props.onDrag}
+            onDragOver={this.props.onDragOver}
+            onDrop={this.props.onDrop}
+            className='topfive-list'>
                <div className='topfive-item-container'>
                    <div className='topfive-item-ranking'>
                        {this.props.index + 1}
