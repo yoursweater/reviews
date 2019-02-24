@@ -3,16 +3,19 @@ const client = new AWS.DynamoDB.DocumentClient();
 
 module.exports.run = async (event) => {
 
-    // const data = JSON.parse(event.body);
+    const data = JSON.parse(event.body);
     // const data = event.body
 
-    console.log(event)
+    console.log(data)
 
-    let category = event.category
-    let draggedRev = event.draggedRev
-    let targetRev = event.targetRev
+    let category = data.category
+    let draggedRev = data.draggedRev
+    let targetRev = data.targetRev
 
-    let tmpDrag = Object.assign({}, event.draggedRev)
+    console.log(category)
+    console.log(draggedRev)
+    let tmpDrag = Object.assign({}, data.draggedRev)
+    let tmpIdx = tmpDrag.topfive
 
     if (category == 'topfive') {
 
@@ -23,14 +26,23 @@ module.exports.run = async (event) => {
             },
             UpdateExpression: "SET topfive = :attrValue",
             ExpressionAttributeValues:{
-                ":attrValue": "10"
+                ":attrValue": targetRev.topfive
             }
         }
-        
-        
         console.log("Updating the item...");
         await client.update(params).promise();
 
+        var newparams = {
+            TableName: 'restaurantreviews',
+            Key: {
+                "id": targetRev.id
+            },
+            UpdateExpression: "SET topfive = :attrValue",
+            ExpressionAttributeValues: {
+                ":attrValue": tmpIdx
+            }
+        }
+        await client.update(newparams).promise();
     }
 
     return {
