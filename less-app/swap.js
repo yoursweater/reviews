@@ -15,9 +15,9 @@ module.exports.run = async (event) => {
     console.log(category)
     console.log(draggedRev)
     let tmpDrag = Object.assign({}, data.draggedRev)
-    let tmpIdx = tmpDrag.topfive
-
+    
     if (category == 'topfive') {
+        let tmpIdx = tmpDrag.topfive
 
         var params = {
             TableName: 'restaurantreviews',
@@ -38,6 +38,33 @@ module.exports.run = async (event) => {
                 "id": targetRev.id
             },
             UpdateExpression: "SET topfive = :attrValue",
+            ExpressionAttributeValues: {
+                ":attrValue": tmpIdx
+            }
+        }
+        await client.update(newparams).promise();
+    } else if (category == 'maytopfive') {
+        let tmpIdx = tmpDrag.maytopfive
+
+        var params = {
+            TableName: 'restaurantreviews',
+            Key:{
+                "id": draggedRev.id
+            },
+            UpdateExpression: "SET maytopfive = :attrValue",
+            ExpressionAttributeValues:{
+                ":attrValue": targetRev.maytopfive
+            }
+        }
+        console.log("Updating the item...");
+        await client.update(params).promise();
+
+        var newparams = {
+            TableName: 'restaurantreviews',
+            Key: {
+                "id": targetRev.id
+            },
+            UpdateExpression: "SET maytopfive = :attrValue",
             ExpressionAttributeValues: {
                 ":attrValue": tmpIdx
             }
