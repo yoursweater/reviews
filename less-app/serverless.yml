@@ -1,4 +1,4 @@
-service: less-app
+service: review-app
 provider:
   name: aws
   runtime: nodejs8.10
@@ -8,7 +8,9 @@ provider:
       - dynamodb:PutItem
       - dynamodb:Scan
       - dynamodb:DeleteItem
-    Resource: arn:aws:dynamodb:us-east-1:589745751216:table/reviews
+      - dynamodb:UpdateItem
+    Resource: arn:aws:dynamodb:us-east-1:589745751216:table/restaurantreviews
+
 functions:
   createReview:
     handler: create.run
@@ -43,7 +45,7 @@ resources:
     ReviewTable:       
       Type: 'AWS::DynamoDB::Table'       
       Properties:        
-        TableName: reviews        
+        TableName: restaurantreviews        
         AttributeDefinitions:           
           -             
             AttributeName: id             

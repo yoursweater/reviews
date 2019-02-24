@@ -19,12 +19,13 @@ class App extends Component {
 
   componentDidMount() {
 
-    fetch('https://n28a4s7dc1.execute-api.us-east-1.amazonaws.com/dev/reviews', {
+    fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/reviews', {
       method: 'GET',
       mode: 'cors'
     })
     .then(response => response.json())
     .then(data => {
+      // console.log(data)
       // let cleanData = JSON.parse(data.body)
       // console.log(cleanData.Items)
       console.log(data)
@@ -35,6 +36,23 @@ class App extends Component {
 
   }
 
+  fetchNewData = () => {
+    fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/reviews', {
+      method: 'GET',
+      mode: 'cors'
+    })
+    .then(response => response.json())
+    .then(data => {
+      // console.log(data)
+      // let cleanData = JSON.parse(data.body)
+      // console.log(cleanData.Items)
+      console.log(data)
+      this.setState({
+        reviews: data.Items
+      })
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -43,17 +61,17 @@ class App extends Component {
             <div className='app-container'>
                 <div className='inner-app-container'>
                   <div className='left-section'>
-                    <TopFive reviews={this.state.reviews} />
+                    <TopFive  reviews={this.state.reviews} />
                     <MayTopFive reviews={this.state.reviews} />
                     <WallOfShame reviews={this.state.reviews} />
       
                   </div>
                   <div className='right-section'>
-                    <ReviewList reviews={this.state.reviews} />
+                    <ReviewList fetchNewData={this.fetchNewData} reviews={this.state.reviews} />
                   </div>
                </div>
                 <div className='post-container'>
-                  <PostReview />
+                  <PostReview fetchNewData={this.fetchNewData}  />
                 </div>
             </div>
         </div>

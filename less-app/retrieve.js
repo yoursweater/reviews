@@ -5,17 +5,17 @@ const uuid = require("uuid/v4");
 module.exports.run = async (event) => {
 
     const params = {
-        TableName : 'reviews',
+        TableName : 'restaurantreviews',
         Limit : 200
     };
       
     let response = await client.scan(params).promise();
+    let res = JSON.stringify(response)
     return {
-      statusCode: 200,
-      body: JSON.stringify(response),
-      headers: {
-        'Access-Control-Allow-Origin':'*' ,
-        "Access-Control-Allow-Headers":'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
-      }
-    };
+      "isBase64Encoded": false,
+      "statusCode": 200,
+      "headers": { "Access-Control-Allow-Origin": "*" },
+      "multiValueHeaders": {"Access-Control-Allow-Headers": ["Content-Type,X-Amz-Date", "Authorization,X-Api-Key", "X-Amz-Security-Token"] },
+      "body": res
+  }
   };

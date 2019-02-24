@@ -21,13 +21,18 @@ class ReviewList extends React.Component {
 
   deleteEntry(id) {
     console.log('deleting!')
-    console.log(id)
-    fetch('https://n28a4s7dc1.execute-api.us-east-1.amazonaws.com/dev/reviews', {
+    let deleteId = {
+      id: id
+    }
+    deleteId = JSON.stringify(deleteId)
+    console.log(deleteId)
+    fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/reviews', {
       method: 'DELETE',
       mode: 'cors',
-      body: id
+      body: deleteId
     }).then(()=>{
-      window.location.reload()
+      this.props.fetchNewData()
+      // window.location.reload()
     })
   }
 

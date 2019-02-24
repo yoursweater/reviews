@@ -34,23 +34,27 @@ class PostReview extends React.Component {
       }
     
       handleSubmit(event) {
+        let self = this
         let data = JSON.stringify(this.state)
         console.log(data)
-        fetch('https://n28a4s7dc1.execute-api.us-east-1.amazonaws.com/dev/reviews', {
+        fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/reviews', {
             method: 'POST',
+            mode: 'cors',
             body: data
           }).then(function(response) {
             return response.json();
           }).then(function(data) {
             console.log('Successfully posted!')
             console.log(data)
-            window.location.reload()
+            // window.location.reload()
+            self.props.fetchNewData()
           });
         event.preventDefault();
       }
 
     
       render() {
+        console.log(this.props)
         return (
           <div className='post-container'>
             <h3 className='post-title'>Submit a Review</h3>

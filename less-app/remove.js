@@ -2,27 +2,22 @@ const AWS = require("aws-sdk");
 const client = new AWS.DynamoDB.DocumentClient();
 
 module.exports.run = async (event) => {
-    console.log(event)
-    // console.log(event.id)
-    // const id = JSON.parse(event.id);
-    let id = event.body
-    console.log(id)
-    // console.log(id)
+  console.log(event)
+    const data = JSON.parse(event.body);
+    // console.log(data)
     const params = {
-        TableName: "reviews",
+        TableName: "restaurantreviews",
         Key:{
-            "id": id
+            "id": data.id
         }
     };
 
     await client.delete(params).promise();
     return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin':'*',
-        'Access-Control-Allow-Headers': 'Content-Type,x-requested-with,Access-Control-Allow-Origin,Access-Control-Allow-Headers,Access-Control-Allow-Methods',
-        'Access-Control-Allow-Methods': 'DELETE'
-      },
-      body: JSON.stringify(event)
-    };
+      "isBase64Encoded": false,
+      "statusCode": 200,
+      "headers": { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Credentials": "false" },
+      "multiValueHeaders": {"Access-Control-Allow-Headers": ["Content-Type,X-Amz-Date", "Authorization,X-Api-Key", "X-Amz-Security-Token"] },
+      "body": JSON.stringify({"message": "success"})
+  }
   };
