@@ -3,11 +3,16 @@ const client = new AWS.DynamoDB.DocumentClient();
 
 module.exports.run = async (event) => {
 
+    // const data = JSON.parse(event.body);
+    // const data = event.body
+
+    console.log(event)
+
     let category = event.category
     let draggedRev = event.draggedRev
     let targetRev = event.targetRev
 
-    let tmpDrag = Object.assign({}, draggedRev)
+    let tmpDrag = Object.assign({}, event.draggedRev)
 
     if (category == 'topfive') {
 
@@ -16,37 +21,23 @@ module.exports.run = async (event) => {
             Key:{
                 "id": draggedRev.id
             },
-            UpdateExpression: "SET #attrName = :attrValue",
-            ExpressionAttributeNames: {
-                "#attrName" : "topfive"
-            },
+            UpdateExpression: "SET topfive = :attrValue",
             ExpressionAttributeValues:{
-                ":attrValue": {
-                    "S": (parseInt(targetRev.topfive) + 5).toString()
-                } 
+                ":attrValue": "10"
             }
-        };
+        }
+        
         
         console.log("Updating the item...");
-    //    await client.update(params, function(err, data) {
-    //         if (err) {
-    //             console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
-    //         } else {
-    //             console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
-    //         }
-    //     })
-
         await client.update(params).promise();
 
     }
 
     return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin':'*',
-        'Access-Control-Allow-Headers': 'Content-Type,x-requested-with,Access-Control-Allow-Origin,Access-Control-Allow-Headers,Access-Control-Allow-Methods',
-        'Access-Control-Allow-Methods': 'PUT'
-      },
-      body: JSON.stringify(event)
-    };
+        "isBase64Encoded": false,
+        "statusCode": 200,
+        "headers": { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Credentials": "false" },
+        "multiValueHeaders": {"Access-Control-Allow-Headers": ["Content-Type,X-Amz-Date", "Authorization,X-Api-Key", "X-Amz-Security-Token"] },
+        "body": JSON.stringify({"message": "success"})
+    }
   };

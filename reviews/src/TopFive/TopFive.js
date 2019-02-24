@@ -29,6 +29,7 @@ class TopFive extends React.Component {
     }
 
     onDrop = (event, review) => {
+      let self = this
       event.preventDefault()
       // this.setState({
       //   isTarget: review
@@ -47,12 +48,14 @@ class TopFive extends React.Component {
         console.log(data)
         fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/reviews', {
             method: 'PUT',
+            mode: 'cors',
             body: data
           }).then(function(response) {
             return response.json();
           }).then(function(data) {
             console.log('Successfully posted!')
             console.log(data)
+            self.props.fetchNewData()
             // window.location.reload()
           });
         
