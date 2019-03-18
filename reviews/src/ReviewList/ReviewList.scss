@@ -46,6 +46,12 @@
             position: relative;
             color: #fdd835;
             font-size: 1.4em;
+            flex-direction: column;
+
+            .stars-label {
+                color: black;
+                font-size: 0.8em;
+            }
 
              .delete-btn {
                  position: absolute;

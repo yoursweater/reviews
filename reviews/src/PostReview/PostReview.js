@@ -36,6 +36,17 @@ class PostReview extends React.Component {
       handleSubmit(event) {
         let self = this
         let data = JSON.stringify(this.state)
+        this.setState({
+            name: '',
+            stars: '',
+            topfive: '0',
+            maytopfive: '0',
+            wallofshame: '0',
+            description: '',
+            cuisine: '',
+            price: '',
+            location: ''
+        })
         console.log(data)
         fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/reviews', {
             method: 'POST',

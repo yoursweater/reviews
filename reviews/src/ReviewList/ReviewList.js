@@ -62,6 +62,7 @@ class ReviewList extends React.Component {
               <div className='reviewlist-item-stars'>
                   <span className='delete-btn' onClick={()=>this.deleteEntry(review.id)}>X</span>
                   {this.makeStars.call(this, review.stars)}
+                  <span className="stars-label">{review.stars} star{review.stars > 1 ? 's' : null}</span>
               </div>
           </div>
        </li>
