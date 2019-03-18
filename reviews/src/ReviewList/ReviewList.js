@@ -1,7 +1,12 @@
 import React from 'react';
 import './ReviewList.scss';
+import ReviewFilter from './ReviewFilter/ReviewFilter';
 
 class ReviewList extends React.Component {
+
+  state = {
+    filter: null
+  }
 
   makePricing(price) {
       let priceString = ""
@@ -17,6 +22,13 @@ class ReviewList extends React.Component {
       starString = starString + String.fromCharCode(9733)
     }
     return starString
+  }
+
+  executeFilter = (star) => {
+    console.log(star)
+    this.setState({
+      filter: star
+    })
   }
 
   deleteEntry(id) {
@@ -37,11 +49,22 @@ class ReviewList extends React.Component {
   }
 
   makeReviews(reviews) {
+    console.log(reviews)
 
     //sort the reviews by number of stars
     let filteredItems = reviews.sort((a, b) => {
       return b.stars - a.stars
     })
+
+    if (this.state.filter != null) {
+      console.log('running')
+      filteredItems = filteredItems.filter( review => {
+        console.log(review)
+        console.log(this.state.filter)
+        return review.stars == (this.state.filter + 1).toString()
+      })
+    }
+    console.log(filteredItems)
 
     // let priceString = this.makePricing(reviews.price)
 
@@ -77,7 +100,8 @@ class ReviewList extends React.Component {
 
       return (
         <div>
-          <h3 className='reviewlist-title'>Full Review List</h3>
+          <h3 className='reviewlist-title'>Review List</h3>
+          <ReviewFilter executeFilter={this.executeFilter} />
           <ul>
             {reviewItems}
           </ul>
