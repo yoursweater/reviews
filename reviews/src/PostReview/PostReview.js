@@ -19,21 +19,18 @@ class PostReview extends React.Component {
             price: '',
             location: ''
         };
-    
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
       }
     
-      handleChange(event) {
+      handleChange = (event) => {
         const target = event.target;
         const name = target.name;
 
         this.setState({
             [name]: event.target.value
-          });
+        });
       }
     
-      handleSubmit(event) {
+      handleSubmit = (event) => {
         let self = this
         let data = JSON.stringify(this.state)
         this.setState({
@@ -46,8 +43,8 @@ class PostReview extends React.Component {
             cuisine: '',
             price: '',
             location: ''
-        })
-        console.log(data)
+        }, () => console.log(this.state))
+
         fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/reviews', {
             method: 'POST',
             mode: 'cors',
@@ -65,7 +62,7 @@ class PostReview extends React.Component {
 
     
       render() {
-        console.log(this.props)
+
         return (
           <div className='post-container'>
             <h3 className='post-title'>Submit a Review</h3>

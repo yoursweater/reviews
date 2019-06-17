@@ -3,44 +3,45 @@ import './WallOfShame.scss';
 
 class WallOfShame extends React.Component {
 
-    makeReviews(reviews) {
+  makeReviews = (reviews) => {
+    // grab only the reviews that have a top five numerical rating, then sort by score from low to high
+    let filteredItems = reviews.filter((review) => {
+      return review.wallofshame && review.wallofshame > 0
+    }).sort((a, b) => {
+      return a.wallofshame - b.wallofshame
+    })
 
-      //grab only the reviews that have a top five numerical rating, then sort by score from low to high
-      let filteredItems = reviews.filter(review => {
-        return review.wallofshame && review.wallofshame > 0
-      }).sort((a, b) => {
-        return a.wallofshame - b.wallofshame
-      })
-
-      //create the list items for display
-      const reviewItems = filteredItems.map((review) => 
-         <li className='wallofshame-list' key={review.id}>
-            <div className='wallofshame-item-container'>
-                <div className='wallofshame-item-ranking'>
-                    {review.wallofshame}
-                </div>
-                <div className='wallofshame-item-name'>
-                    {review.name}
-                </div>
+    // create the list items for display
+    const reviewItems = filteredItems.map((review) => {
+      return (
+        <li className='wallofshame-list' key={review.id}>
+          <div className='wallofshame-item-container'>
+            <div className='wallofshame-item-ranking'>
+              {review.wallofshame}
             </div>
-         </li>
-      )
-      return reviewItems
-    }
-  
-    render() {
-        const reviewItems = this.makeReviews(this.props.reviews)
-
-        return (
-          <div>
-              <h3 className='wallofshame-title'>Wall of Shame</h3>
-              <ul>
-                 {reviewItems}
-              </ul>
+            <div className='wallofshame-item-name'>
+              {review.name}
+            </div>
           </div>
-        )
-    }
-  
+        </li>
+      )
+    })
+    return reviewItems
   }
+  
+  render() {
+    const reviewItems = this.makeReviews(this.props.reviews)
 
-  export default WallOfShame;
+    return (
+      <div>
+        <h3 className='wallofshame-title'>Wall of Shame</h3>
+        <ul>
+          {reviewItems}
+        </ul>
+      </div>
+    )
+  }
+  
+}
+
+export default WallOfShame;

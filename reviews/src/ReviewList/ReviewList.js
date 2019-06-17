@@ -5,7 +5,7 @@ import ReviewFilter from './ReviewFilter/ReviewFilter';
 class ReviewList extends React.Component {
 
   state = {
-    filter: null
+    filter: 4
   }
 
   makePricing(price) {
