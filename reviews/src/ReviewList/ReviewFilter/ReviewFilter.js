@@ -12,39 +12,7 @@ const options = [
     'Three',
     'Four',
     'Five'
-  ];
-
-// class ReviewList extends React.Component {
-
-//     handleSubmit = (e) => {
-//         e.preventDefault()
-//         e.stopPropagation()
-//         console.log('submitted')
-//         console.log(e.target.value)
-//         return false
-//     }
-
-//     render() {
-//         return (
-//             <div className='review-filter'>
-//                 <h1>Filter</h1>
-//                 <form>
-//                     <select name="stars" size="5" multiple>
-//                         <option value="one">One</option>
-//                         <option value="two">Two</option>
-//                         <option value="three">Three</option>
-//                         <option value="four">Four</option>
-//                         <option value="five">Five</option>
-//                     </select>
-//                     <input type="submit" onSubmit={e => this.handleSubmit(e)}></input>
-//                 </form>
-//             </div>
-//         )
-//     }
-
-// }
-
-// export default ReviewList
+];
 
 class ReviewList extends React.Component {
     state = {

@@ -38,10 +38,6 @@ class App extends Component {
     })
       .then(response => response.json())
       .then((data) => {
-        // console.log(data)
-        // let cleanData = JSON.parse(data.body)
-        // console.log(cleanData.Items)
-        console.log(data)
         this.setState({
           reviews: data.Items
         })

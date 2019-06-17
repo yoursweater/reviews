@@ -25,48 +25,36 @@ class ReviewList extends React.Component {
   }
 
   executeFilter = (star) => {
-    console.log(star)
     this.setState({
       filter: star
     })
   }
 
   deleteEntry(id) {
-    console.log('deleting!')
     let deleteId = {
       id: id
     }
     deleteId = JSON.stringify(deleteId)
-    console.log(deleteId)
     fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/reviews', {
       method: 'DELETE',
       mode: 'cors',
       body: deleteId
     }).then(()=>{
       this.props.fetchNewData()
-      // window.location.reload()
     })
   }
 
   makeReviews(reviews) {
-    console.log(reviews)
-
     //sort the reviews by number of stars
     let filteredItems = reviews.sort((a, b) => {
       return b.stars - a.stars
     })
 
     if (this.state.filter != null) {
-      console.log('running')
-      filteredItems = filteredItems.filter( review => {
-        console.log(review)
-        console.log(this.state.filter)
+      filteredItems = filteredItems.filter(review => {
         return review.stars == (this.state.filter + 1).toString()
-      })
-    }
-    console.log(filteredItems)
-
-    // let priceString = this.makePricing(reviews.price)
+    })
+  }
 
     //create the list items for display
     const reviewItems = filteredItems.map((review) => 
@@ -95,7 +83,6 @@ class ReviewList extends React.Component {
 
   
     render() {
-  
       const reviewItems = this.makeReviews(this.props.reviews)
 
       return (

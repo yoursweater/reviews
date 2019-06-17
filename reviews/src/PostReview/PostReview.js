@@ -1,8 +1,6 @@
 import React from 'react';
 import './PostReview.scss';
-
 import Button from '@material-ui/core/Button';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 
 class PostReview extends React.Component {
@@ -43,7 +41,7 @@ class PostReview extends React.Component {
             cuisine: '',
             price: '',
             location: ''
-        }, () => console.log(this.state))
+        })
 
         fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/reviews', {
             method: 'POST',
@@ -172,9 +170,12 @@ class PostReview extends React.Component {
                   variant="outlined"
                 />
               <br />
+                <Button type='submit' value='Submit' label="Submit" variant="outlined" color="primary" >
+                  Submit
+                </Button>
               </div>
               <div className='right-post'>
-              <TextField
+              {/* <TextField
                   label="Dan's Top Five? (leave alone if false)"
                   type="number"
                   name="topfive"
@@ -205,11 +206,8 @@ class PostReview extends React.Component {
                   onChange={this.handleChange}
                   margin="dense"
                   variant="outlined"
-                />
-                <br />
-              <Button type='submit' value='Submit' label="Submit" variant="outlined" color="primary" >
-                Submit
-              </Button>
+                /> */}
+                {/* <br /> */}
               </div>
             </form>
           </div>
