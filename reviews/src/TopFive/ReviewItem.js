@@ -5,8 +5,6 @@ import { DragSource } from 'react-dnd';
 class ReviewItem extends React.Component {
     
     render() {
-        // const {isDragging, connectDragSource, review} = this.props
-        // console.log(this.props)
 
         return (
             <li draggable

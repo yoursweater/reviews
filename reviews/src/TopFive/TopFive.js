@@ -36,13 +36,8 @@ class TopFive extends React.Component {
     onDrop = (event, review) => {
       let self = this
       event.preventDefault()
-      // this.setState({
-      //   isTarget: review
-      // })
-
+ 
       if (this.state.isDragging.id !== review.id) {
-        console.log('SWAP')
-        console.log(review)
         let swapObj = {
           category: 'topfive',
           draggedRev: this.state.isDragging,
@@ -50,7 +45,7 @@ class TopFive extends React.Component {
         }
 
         let data = JSON.stringify(swapObj)
-        console.log(data)
+
         fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/reviews', {
           method: 'PUT',
           mode: 'cors',
@@ -58,10 +53,7 @@ class TopFive extends React.Component {
         }).then((response) => {
           return response.json();
         }).then((response) => {
-          console.log('Successfully posted!')
-          console.log(response)
           self.props.fetchNewData()
-          // window.location.reload()
         });
         
       }
