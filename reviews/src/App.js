@@ -18,17 +18,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/reviews', {
-      method: 'GET',
-      mode: 'cors'
-    })
-      .then(response => response.json())
-      .then((data) => {
-        console.log(data)
-        this.setState({
-          reviews: data.Items
-        })
-      })
+    this.fetchNewData()
   }
 
   fetchNewData = () => {
@@ -54,7 +44,7 @@ class App extends Component {
               <div className='left-section'>
                 <TopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} />
                 <MayTopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} />
-                / <WallOfShame reviews={this.state.reviews} />
+                <WallOfShame reviews={this.state.reviews} />
               </div>
               <div className='right-section'>
                 <ReviewList fetchNewData={this.fetchNewData} reviews={this.state.reviews} />
