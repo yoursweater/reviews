@@ -170,9 +170,11 @@ class PostReview extends React.Component {
                   variant="outlined"
                 />
               <br />
+              <div className='submit-btn'>
                 <Button type='submit' value='Submit' label="Submit" variant="outlined" color="primary" >
                   Submit
                 </Button>
+              </div>
               </div>
               <div className='right-post'>
               {/* <TextField
