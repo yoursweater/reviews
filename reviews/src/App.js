@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import HTML5Backend from 'react-dnd-html5-backend'
-import { DragDropContext } from 'react-dnd'
 // import logo from './logo.svg';
 import WallOfShame from './WallOfShame/WallOfShame';
 import ReviewList from './ReviewList/ReviewList';
@@ -37,28 +35,28 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div id='main'>
-          <h1 className='app-header'>Dan and May's Restaurant Reviews</h1>
-          <div className='app-container'>
-            <div className='inner-app-container'>
-              <div className='left-section'>
-                <TopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} />
-                {/* <MayTopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} />
-                <WallOfShame reviews={this.state.reviews} /> */}
+          <div id='main'>
+            <h1 className='app-header'>Dan and May's Restaurant Reviews</h1>
+            <div className='app-container'>
+              <div className='inner-app-container'>
+                <div className='left-section'>
+                  <TopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} />
+                  {/* <MayTopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} />
+                  <WallOfShame reviews={this.state.reviews} /> */}
+                </div>
+                <div className='right-section'>
+                  <ReviewList fetchNewData={this.fetchNewData} reviews={this.state.reviews} />
+                </div>
               </div>
-              <div className='right-section'>
-                <ReviewList fetchNewData={this.fetchNewData} reviews={this.state.reviews} />
+              <div className='post-container'>
+                <PostReview fetchNewData={this.fetchNewData} />
               </div>
-            </div>
-            <div className='post-container'>
-              <PostReview fetchNewData={this.fetchNewData} />
             </div>
           </div>
-        </div>
       </div>
     );
   }
 }
 
 
-export default DragDropContext(HTML5Backend)(App)
+export default App;

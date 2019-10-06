@@ -57,27 +57,29 @@ class ReviewList extends React.Component {
   }
 
     //create the list items for display
-    const reviewItems = filteredItems.map((review) => 
-       <li className='reviewlist-list' key={review.id}>
-          <div className='reviewlist-item-container'>
-              <div className='reviewlist-item-name'>
-                  <h4 className='reviewlist-name'>{review.name}</h4>
+    const reviewItems = filteredItems.map((review) => {
+       return (
+          <li className='reviewlist-list' key={review.id}>
+              <div className='reviewlist-item-container'>
+                  <div className='reviewlist-item-name'>
+                      <h4 className='reviewlist-name'>{review.name}</h4>
+                  </div>
+                  <div className='reviewlist-item-info'>
+                      <p className='side-info'>{review.cuisine}</p>
+                      <p className='side-info'>{this.makePricing.call(this, review.price)}</p>
+                  </div>
+                  <div className='reviewlist-item-description'>
+                      <p>{review.description}</p>
+                  </div>
+                  <div className='reviewlist-item-stars'>
+                      <span className='delete-btn' onClick={()=>this.deleteEntry(review.id)}>X</span>
+                      {this.makeStars.call(this, review.stars)}
+                      <span className="stars-label">{review.stars} star{review.stars > 1 ? 's' : null}</span>
+                  </div>
               </div>
-              <div className='reviewlist-item-info'>
-                  <p className='side-info'>{review.cuisine}</p>
-                  <p className='side-info'>{this.makePricing.call(this, review.price)}</p>
-              </div>
-              <div className='reviewlist-item-description'>
-                  <p>{review.description}</p>
-              </div>
-              <div className='reviewlist-item-stars'>
-                  <span className='delete-btn' onClick={()=>this.deleteEntry(review.id)}>X</span>
-                  {this.makeStars.call(this, review.stars)}
-                  <span className="stars-label">{review.stars} star{review.stars > 1 ? 's' : null}</span>
-              </div>
-          </div>
-       </li>
-    )
+          </li>
+       )
+    })
     return reviewItems
   }
 

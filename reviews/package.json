@@ -5,10 +5,12 @@
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "node-sass": "^4.11.0",
+    "pouchdb": "^7.1.1",
     "react": "^16.6.3",
-    "react-dnd": "^7.0.2",
+    "react-dnd": "^7.7.0",
     "react-dnd-html5-backend": "^7.0.2",
     "react-dom": "^16.6.3",
+    "react-dragula": "^1.1.17",
     "react-scripts": "2.1.1"
   },
   "scripts": {
