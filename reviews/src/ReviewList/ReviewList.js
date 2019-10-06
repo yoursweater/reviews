@@ -46,7 +46,8 @@ class ReviewList extends React.Component {
 
   addDan(name) {
     let event = {
-      name: name
+      name: name,
+      rank: this.props.dantop.length + 1
     }
     event = JSON.stringify(event)
     fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/dantable', {

@@ -1,9 +1,9 @@
 import React from 'react';
-import './TopFive.scss';
+import './MayTopFive.scss';
 import ReviewItem from './ReviewItem';
 import Dragula from 'react-dragula';
 
-class TopFive extends React.Component {
+class MayTopFive extends React.Component {
 
   state = {
     topItems: []
@@ -44,7 +44,7 @@ class TopFive extends React.Component {
 
       return (
         <div>
-          <h3 className='topfive-title'>Dan's Top Restaurants</h3>
+          <h3 className='topfive-title'>May's Top Restaurants</h3>
           <ul ref={this.dragulaDecorator} >
             {reviewItems}
           </ul>
@@ -54,4 +54,4 @@ class TopFive extends React.Component {
   
 }
 
-export default TopFive;
+export default MayTopFive;

@@ -51,11 +51,12 @@ class App extends Component {
               <div className='inner-app-container'>
                 <div className='left-section'>
                   <TopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} />
+                  <MayTopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} />
                   {/* <MayTopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} />
                   <WallOfShame reviews={this.state.reviews} /> */}
                 </div>
                 <div className='right-section'>
-                  <ReviewList fetchNewData={this.fetchNewData} reviews={this.state.reviews} />
+                  <ReviewList fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} />
                 </div>
               </div>
               <div className='post-container'>
