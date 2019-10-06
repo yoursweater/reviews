@@ -33,6 +33,13 @@ functions:
         path: danget           
         method: get
         cors: true
+  danDelete:
+    handler: dandelete.run
+    events:        
+    - http:            
+        path: dandelete           
+        method: delete
+        cors: true
   removeReview:
     handler: remove.run
     events:        

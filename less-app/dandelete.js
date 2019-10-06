@@ -1,21 +1,18 @@
 const AWS = require("aws-sdk");
 const client = new AWS.DynamoDB.DocumentClient();
-const uuid = require("uuid/v4");
 
 module.exports.run = async (event) => {
   console.log(event)
     const data = JSON.parse(event.body);
-    // const data = event 
-    console.log(data)
+    // console.log(data)
     const params = {
-      TableName: "dantable",
-      Item: {
-        id: uuid(),
-        name: data.name,
-        rank: data.rank
-      }
+        TableName: "dantable",
+        Key:{
+            "id": data.id
+        }
     };
-    await client.put(params).promise();
+
+    await client.delete(params).promise();
     return {
       "isBase64Encoded": false,
       "statusCode": 200,
