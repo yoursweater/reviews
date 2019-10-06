@@ -11,7 +11,8 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      reviews: []
+      reviews: [],
+      dantop: []
     }
   }
 
@@ -29,6 +30,15 @@ class App extends Component {
         this.setState({
           reviews: data.Items
         })
+        fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/danget', {
+          method: 'GET',
+          mode: 'cors'
+        }).then(res => res.json())
+          .then(data => {
+            this.setState({
+              dantop: data.Items
+            }, () => console.log(this.state))
+          })
       })
   }
 
@@ -40,7 +50,7 @@ class App extends Component {
             <div className='app-container'>
               <div className='inner-app-container'>
                 <div className='left-section'>
-                  <TopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} />
+                  <TopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} />
                   {/* <MayTopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} />
                   <WallOfShame reviews={this.state.reviews} /> */}
                 </div>

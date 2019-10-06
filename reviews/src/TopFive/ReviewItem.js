@@ -19,7 +19,7 @@ class ReviewItem extends React.Component {
                        
                    </div>
                    <div className='topfive-item-name'>
-                       {this.props.review.name}
+                       {this.props.review}
                    </div>
                </div>
             </li>

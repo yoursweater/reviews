@@ -19,19 +19,15 @@ class TopFive extends React.Component {
     };
 
     makeReviews(reviews) {
-      // grab only the reviews that have a top five numerical rating, then sort by score from low to high
-      let filteredItems = reviews.filter(review => {
-        return review.topfive && review.topfive > 0
-      })
 
       // create the list items for display
-      const reviewItems = filteredItems.map((review, index) => {
+      const reviewItems = reviews.map((review, index) => {
         return (
           <ReviewItem
             reviewList={this.props.reviews} 
-            review={review} 
+            review={review.name} 
             index={index} 
-            key={review.id} 
+            key={review.name} 
           />
         )
       })
@@ -39,7 +35,7 @@ class TopFive extends React.Component {
     }
   
     render() {
-      const reviewItems = this.makeReviews(this.props.reviews)
+      const reviewItems = this.makeReviews(this.props.dantop)
 
       return (
         <div>

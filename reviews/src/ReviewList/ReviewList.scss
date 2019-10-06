@@ -16,10 +16,11 @@
         box-shadow: 3px 2px 5px 2px rgba(94, 93, 94, 0.37);
         padding: 10px;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
         grid-template-areas: 
         "name name name info stars"
-        "desc desc desc desc stars";
+        "desc desc desc desc stars"
+        "adddan adddan adddan adddan stars";
 
         .reviewlist-item-ranking {
             padding: 8px;
@@ -29,6 +30,15 @@
             grid-area: info;
             color: grey;
         }
+
+        .reviewlist-item-adddan {
+          grid-area: adddan;
+          font-size: .8em;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          color: 'blue';
+      }
 
         .reviewlist-item-description {
             grid-area: desc;
