@@ -40,6 +40,24 @@
         "LogGroupName": "/aws/lambda/review-app-dev-danDelete"
       }
     },
+    "MayAddLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/review-app-dev-mayAdd"
+      }
+    },
+    "MayGetLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/review-app-dev-mayGet"
+      }
+    },
+    "MayDeleteLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/review-app-dev-mayDelete"
+      }
+    },
     "RemoveReviewLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
@@ -151,7 +169,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/review-app/dev/1570382313364-2019-10-06T17:18:33.364Z/review-app.zip"
+          "S3Key": "serverless/review-app/dev/1570383066081-2019-10-06T17:31:06.081Z/review-app.zip"
         },
         "FunctionName": "review-app-dev-createReview",
         "Handler": "create.run",
@@ -170,14 +188,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "CreateReviewLambdaVersionpMHgdAC6mFL7V3HBeJsMumbnuuaO3QBZReGG4O16Jvk": {
+    "CreateReviewLambdaVersionyUNwHvSbD09u4CNhw9jueKKnsCSoQM5sYgleQQalA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateReviewLambdaFunction"
         },
-        "CodeSha256": "hoeuwT3ldAB02h4G5XH4E3O9yoJOnHQ86dW0cAZ9BRQ="
+        "CodeSha256": "YMepEclP7Xc7wT7J8q/YQwu65F8DTGh0xbomLxbzxPI="
       }
     },
     "DanAddLambdaFunction": {
@@ -187,7 +205,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/review-app/dev/1570382313364-2019-10-06T17:18:33.364Z/review-app.zip"
+          "S3Key": "serverless/review-app/dev/1570383066081-2019-10-06T17:31:06.081Z/review-app.zip"
         },
         "FunctionName": "review-app-dev-danAdd",
         "Handler": "danadd.run",
@@ -206,14 +224,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "DanAddLambdaVersionLlcSwB6ibqWaQEffeNAAn3K7yUWFczFFaLuiLZY": {
+    "DanAddLambdaVersionLnFJpy7jZfss4ZJyfbbUQ5lcFuXw1HLpSgh35vKtwJQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DanAddLambdaFunction"
         },
-        "CodeSha256": "hoeuwT3ldAB02h4G5XH4E3O9yoJOnHQ86dW0cAZ9BRQ="
+        "CodeSha256": "YMepEclP7Xc7wT7J8q/YQwu65F8DTGh0xbomLxbzxPI="
       }
     },
     "DanGetLambdaFunction": {
@@ -223,7 +241,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/review-app/dev/1570382313364-2019-10-06T17:18:33.364Z/review-app.zip"
+          "S3Key": "serverless/review-app/dev/1570383066081-2019-10-06T17:31:06.081Z/review-app.zip"
         },
         "FunctionName": "review-app-dev-danGet",
         "Handler": "danget.run",
@@ -242,14 +260,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "DanGetLambdaVersionnIIH6mREb8v16CdIFuzQ1FLn341aAbsx378hl7Oe5M": {
+    "DanGetLambdaVersionlxBjHFJ3rMM6j9E9ZVdpX0K2BVY5Vi6cp8pmIhZdP8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DanGetLambdaFunction"
         },
-        "CodeSha256": "hoeuwT3ldAB02h4G5XH4E3O9yoJOnHQ86dW0cAZ9BRQ="
+        "CodeSha256": "YMepEclP7Xc7wT7J8q/YQwu65F8DTGh0xbomLxbzxPI="
       }
     },
     "DanDeleteLambdaFunction": {
@@ -259,7 +277,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/review-app/dev/1570382313364-2019-10-06T17:18:33.364Z/review-app.zip"
+          "S3Key": "serverless/review-app/dev/1570383066081-2019-10-06T17:31:06.081Z/review-app.zip"
         },
         "FunctionName": "review-app-dev-danDelete",
         "Handler": "dandelete.run",
@@ -278,14 +296,122 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "DanDeleteLambdaVersionSXHqxLNcIFWrkU493xKyCQZA9FCRloY8jAr9S5Bbxfs": {
+    "DanDeleteLambdaVersionViwaHtOzVVR3OblRgElcv2RWGXydC5tepfKqG5wCo0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DanDeleteLambdaFunction"
         },
-        "CodeSha256": "hoeuwT3ldAB02h4G5XH4E3O9yoJOnHQ86dW0cAZ9BRQ="
+        "CodeSha256": "YMepEclP7Xc7wT7J8q/YQwu65F8DTGh0xbomLxbzxPI="
+      }
+    },
+    "MayAddLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/review-app/dev/1570383066081-2019-10-06T17:31:06.081Z/review-app.zip"
+        },
+        "FunctionName": "review-app-dev-mayAdd",
+        "Handler": "mayadd.run",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs8.10",
+        "Timeout": 6
+      },
+      "DependsOn": [
+        "MayAddLogGroup",
+        "IamRoleLambdaExecution"
+      ]
+    },
+    "MayAddLambdaVersionH0Z1Fv2NZGsE7j7QXzChEwCLt7j0m9CIXFdOeCckc": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "MayAddLambdaFunction"
+        },
+        "CodeSha256": "YMepEclP7Xc7wT7J8q/YQwu65F8DTGh0xbomLxbzxPI="
+      }
+    },
+    "MayGetLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/review-app/dev/1570383066081-2019-10-06T17:31:06.081Z/review-app.zip"
+        },
+        "FunctionName": "review-app-dev-mayGet",
+        "Handler": "mayget.run",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs8.10",
+        "Timeout": 6
+      },
+      "DependsOn": [
+        "MayGetLogGroup",
+        "IamRoleLambdaExecution"
+      ]
+    },
+    "MayGetLambdaVersionCoHsdGSlhoF6cUA1J1ONdXh6RA7VtegRGinlO6iHT6A": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "MayGetLambdaFunction"
+        },
+        "CodeSha256": "YMepEclP7Xc7wT7J8q/YQwu65F8DTGh0xbomLxbzxPI="
+      }
+    },
+    "MayDeleteLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/review-app/dev/1570383066081-2019-10-06T17:31:06.081Z/review-app.zip"
+        },
+        "FunctionName": "review-app-dev-mayDelete",
+        "Handler": "maydelete.run",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs8.10",
+        "Timeout": 6
+      },
+      "DependsOn": [
+        "MayDeleteLogGroup",
+        "IamRoleLambdaExecution"
+      ]
+    },
+    "MayDeleteLambdaVersiona2VJq2BmOjR6HAJoI9cvqIQ4Ds6ZGcydDXzgZoMOI": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "MayDeleteLambdaFunction"
+        },
+        "CodeSha256": "YMepEclP7Xc7wT7J8q/YQwu65F8DTGh0xbomLxbzxPI="
       }
     },
     "RemoveReviewLambdaFunction": {
@@ -295,7 +421,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/review-app/dev/1570382313364-2019-10-06T17:18:33.364Z/review-app.zip"
+          "S3Key": "serverless/review-app/dev/1570383066081-2019-10-06T17:31:06.081Z/review-app.zip"
         },
         "FunctionName": "review-app-dev-removeReview",
         "Handler": "remove.run",
@@ -314,14 +440,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "RemoveReviewLambdaVersionQc937oe5G4MXGXTeGu4axnjkIrb9Wl4NLjW7Z8b91A": {
+    "RemoveReviewLambdaVersion9ziHMFy5dzNVoKxhOEdUtLoAEk1krSpX0AZlacfIaI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "RemoveReviewLambdaFunction"
         },
-        "CodeSha256": "hoeuwT3ldAB02h4G5XH4E3O9yoJOnHQ86dW0cAZ9BRQ="
+        "CodeSha256": "YMepEclP7Xc7wT7J8q/YQwu65F8DTGh0xbomLxbzxPI="
       }
     },
     "RetrieveReviewLambdaFunction": {
@@ -331,7 +457,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/review-app/dev/1570382313364-2019-10-06T17:18:33.364Z/review-app.zip"
+          "S3Key": "serverless/review-app/dev/1570383066081-2019-10-06T17:31:06.081Z/review-app.zip"
         },
         "FunctionName": "review-app-dev-retrieveReview",
         "Handler": "retrieve.run",
@@ -350,14 +476,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "RetrieveReviewLambdaVersionSGdSviBF553m3tbfCfMZln4UU5IvtZnAUI6cNes6JB8": {
+    "RetrieveReviewLambdaVersionoDduJkinlawpbJERzMiHuY0ve7XfivCQcT5HhNYUmw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "RetrieveReviewLambdaFunction"
         },
-        "CodeSha256": "hoeuwT3ldAB02h4G5XH4E3O9yoJOnHQ86dW0cAZ9BRQ="
+        "CodeSha256": "YMepEclP7Xc7wT7J8q/YQwu65F8DTGh0xbomLxbzxPI="
       }
     },
     "SwapReviewLambdaFunction": {
@@ -367,7 +493,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/review-app/dev/1570382313364-2019-10-06T17:18:33.364Z/review-app.zip"
+          "S3Key": "serverless/review-app/dev/1570383066081-2019-10-06T17:31:06.081Z/review-app.zip"
         },
         "FunctionName": "review-app-dev-swapReview",
         "Handler": "swap.run",
@@ -386,14 +512,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "SwapReviewLambdaVersion6LX4ZStWEGlNkHWbSDLfm7VEM256dnQtUA8GvjMvPs": {
+    "SwapReviewLambdaVersiono3S186V9ts5FHljWvB3QCt2sYku1TeenBq8A90mr5A": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "SwapReviewLambdaFunction"
         },
-        "CodeSha256": "hoeuwT3ldAB02h4G5XH4E3O9yoJOnHQ86dW0cAZ9BRQ="
+        "CodeSha256": "YMepEclP7Xc7wT7J8q/YQwu65F8DTGh0xbomLxbzxPI="
       }
     },
     "ApiGatewayRestApi": {
@@ -462,6 +588,51 @@
           ]
         },
         "PathPart": "dandelete",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceMayadd": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "mayadd",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceMayget": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "mayget",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceMaydelete": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "maydelete",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -655,6 +826,147 @@
         }
       }
     },
+    "ApiGatewayMethodMayaddOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
+                "method.response.header.Access-Control-Allow-Credentials": "'false'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".*\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceMayadd"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodMaygetOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'",
+                "method.response.header.Access-Control-Allow-Credentials": "'false'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".*\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceMayget"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodMaydeleteOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE'",
+                "method.response.header.Access-Control-Allow-Credentials": "'false'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".*\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceMaydelete"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
     "ApiGatewayMethodReviewsPost": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
@@ -827,6 +1139,135 @@
         "MethodResponses": []
       }
     },
+    "ApiGatewayMethodMayaddPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceMayadd"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "MayAddLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayMethodMaygetGet": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceMayget"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "MayGetLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayMethodMaydeleteDelete": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "DELETE",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceMaydelete"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "MayDeleteLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
     "ApiGatewayMethodReviewsDelete": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
@@ -956,7 +1397,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1570382310023": {
+    "ApiGatewayDeployment1570383063088": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -969,10 +1410,16 @@
         "ApiGatewayMethodDantableOptions",
         "ApiGatewayMethodDangetOptions",
         "ApiGatewayMethodDandeleteOptions",
+        "ApiGatewayMethodMayaddOptions",
+        "ApiGatewayMethodMaygetOptions",
+        "ApiGatewayMethodMaydeleteOptions",
         "ApiGatewayMethodReviewsPost",
         "ApiGatewayMethodDantablePost",
         "ApiGatewayMethodDangetGet",
         "ApiGatewayMethodDandeleteDelete",
+        "ApiGatewayMethodMayaddPost",
+        "ApiGatewayMethodMaygetGet",
+        "ApiGatewayMethodMaydeleteDelete",
         "ApiGatewayMethodReviewsDelete",
         "ApiGatewayMethodReviewsGet",
         "ApiGatewayMethodReviewsPut"
@@ -1095,6 +1542,117 @@
         "FunctionName": {
           "Fn::GetAtt": [
             "DanDeleteLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "MayAddLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "MayAddLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "MayGetLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "MayGetLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "MayDeleteLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "MayDeleteLambdaFunction",
             "Arn"
           ]
         },
@@ -1280,6 +1838,28 @@
           "WriteCapacityUnits": 1
         }
       }
+    },
+    "MayTable": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "maytable",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "id",
+            "KeyType": "HASH"
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 1,
+          "WriteCapacityUnits": 1
+        }
+      }
     }
   },
   "Outputs": {
@@ -1291,43 +1871,61 @@
     "CreateReviewLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateReviewLambdaVersionpMHgdAC6mFL7V3HBeJsMumbnuuaO3QBZReGG4O16Jvk"
+        "Ref": "CreateReviewLambdaVersionyUNwHvSbD09u4CNhw9jueKKnsCSoQM5sYgleQQalA"
       }
     },
     "DanAddLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DanAddLambdaVersionLlcSwB6ibqWaQEffeNAAn3K7yUWFczFFaLuiLZY"
+        "Ref": "DanAddLambdaVersionLnFJpy7jZfss4ZJyfbbUQ5lcFuXw1HLpSgh35vKtwJQ"
       }
     },
     "DanGetLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DanGetLambdaVersionnIIH6mREb8v16CdIFuzQ1FLn341aAbsx378hl7Oe5M"
+        "Ref": "DanGetLambdaVersionlxBjHFJ3rMM6j9E9ZVdpX0K2BVY5Vi6cp8pmIhZdP8"
       }
     },
     "DanDeleteLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DanDeleteLambdaVersionSXHqxLNcIFWrkU493xKyCQZA9FCRloY8jAr9S5Bbxfs"
+        "Ref": "DanDeleteLambdaVersionViwaHtOzVVR3OblRgElcv2RWGXydC5tepfKqG5wCo0"
+      }
+    },
+    "MayAddLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "MayAddLambdaVersionH0Z1Fv2NZGsE7j7QXzChEwCLt7j0m9CIXFdOeCckc"
+      }
+    },
+    "MayGetLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "MayGetLambdaVersionCoHsdGSlhoF6cUA1J1ONdXh6RA7VtegRGinlO6iHT6A"
+      }
+    },
+    "MayDeleteLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "MayDeleteLambdaVersiona2VJq2BmOjR6HAJoI9cvqIQ4Ds6ZGcydDXzgZoMOI"
       }
     },
     "RemoveReviewLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "RemoveReviewLambdaVersionQc937oe5G4MXGXTeGu4axnjkIrb9Wl4NLjW7Z8b91A"
+        "Ref": "RemoveReviewLambdaVersion9ziHMFy5dzNVoKxhOEdUtLoAEk1krSpX0AZlacfIaI"
       }
     },
     "RetrieveReviewLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "RetrieveReviewLambdaVersionSGdSviBF553m3tbfCfMZln4UU5IvtZnAUI6cNes6JB8"
+        "Ref": "RetrieveReviewLambdaVersionoDduJkinlawpbJERzMiHuY0ve7XfivCQcT5HhNYUmw"
       }
     },
     "SwapReviewLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "SwapReviewLambdaVersion6LX4ZStWEGlNkHWbSDLfm7VEM256dnQtUA8GvjMvPs"
+        "Ref": "SwapReviewLambdaVersiono3S186V9ts5FHljWvB3QCt2sYku1TeenBq8A90mr5A"
       }
     },
     "ServiceEndpoint": {

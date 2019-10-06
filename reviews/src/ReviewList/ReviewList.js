@@ -59,6 +59,21 @@ class ReviewList extends React.Component {
     })
   }
 
+  addMay(name) {
+    let event = {
+      name: name,
+      rank: this.props.dantop.length + 1
+    }
+    event = JSON.stringify(event)
+    fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/mayadd', {
+      method: 'POST',
+      mode: 'cors',
+      body: event
+    }).then(()=>{
+      this.props.fetchNewData()
+    })
+  }
+
   makeReviews(reviews) {
     //sort the reviews by number of stars
     let filteredItems = reviews.sort((a, b) => {
@@ -87,7 +102,10 @@ class ReviewList extends React.Component {
                       <p>{review.description}</p>
                   </div>
                   <div onClick={() => this.addDan(review.name)} className='reviewlist-item-adddan'>
-                      <p>Add to Dan's top restaurants</p>
+                      <p>Add to Dan's Favs</p>
+                  </div>
+                  <div onClick={() => this.addMay(review.name)} className='reviewlist-item-addmay'>
+                      <p>Add to May's Favs</p>
                   </div>
                   <div className='reviewlist-item-stars'>
                       <span className='delete-btn' onClick={()=>this.deleteEntry(review.id)}>X</span>

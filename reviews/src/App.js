@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import WallOfShame from './WallOfShame/WallOfShame';
 import ReviewList from './ReviewList/ReviewList';
 import TopFive from './TopFive/TopFive';
-import MayTopFive from './MayTopFive/MayTopFive';
+import MayTopFive from './TopFive/MayTopFive';
 import PostReview from './PostReview/PostReview';
 import './App.scss';
 
@@ -12,7 +12,8 @@ class App extends Component {
     super(props)
     this.state = {
       reviews: [],
-      dantop: []
+      dantop: [],
+      maytop: []
     }
   }
 
@@ -37,7 +38,16 @@ class App extends Component {
           .then(data => {
             this.setState({
               dantop: data.Items
-            }, () => console.log(this.state))
+            })
+            fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/mayget', {
+              method: 'GET',
+              mode: 'cors'
+            }).then(res => res.json())
+            .then(data => {
+              this.setState({
+                maytop: data.Items
+              }, () => console.log(this.state))
+            })
           })
       })
   }
@@ -51,12 +61,12 @@ class App extends Component {
               <div className='inner-app-container'>
                 <div className='left-section'>
                   <TopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} />
-                  <MayTopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} />
+                  <MayTopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} maytop={this.state.maytop} />
                   {/* <MayTopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} />
                   <WallOfShame reviews={this.state.reviews} /> */}
                 </div>
                 <div className='right-section'>
-                  <ReviewList fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} />
+                  <ReviewList fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} maytop={this.state.maytop} />
                 </div>
               </div>
               <div className='post-container'>

@@ -20,7 +20,7 @@
         grid-template-areas: 
         "name name name info stars"
         "desc desc desc desc stars"
-        "adddan adddan adddan adddan stars";
+        "adddan adddan addmay addmay stars";
 
         .reviewlist-item-ranking {
             padding: 8px;
@@ -37,8 +37,17 @@
           display: flex;
           align-items: center;
           cursor: pointer;
-          color: 'blue';
-      }
+          color: #00701a;
+        }
+
+        .reviewlist-item-addmay {
+          grid-area: addmay;
+          font-size: .8em;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          color: #ff9800;
+        }
 
         .reviewlist-item-description {
             grid-area: desc;

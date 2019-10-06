@@ -32,6 +32,7 @@ class MayTopFive extends React.Component {
             review={review} 
             index={index} 
             key={review.name}
+            table={'may'}
             fetchNewData={this.props.fetchNewData}
           />
         )
@@ -40,11 +41,11 @@ class MayTopFive extends React.Component {
     }
   
     render() {
-      const reviewItems = this.makeReviews(this.props.dantop)
+      const reviewItems = this.makeReviews(this.props.maytop)
 
       return (
         <div>
-          <h3 className='topfive-title'>May's Top Restaurants</h3>
+          <h3 className='maytopfive-title' style={{color: '#ff9800'}}>May's Top Restaurants</h3>
           <ul ref={this.dragulaDecorator} >
             {reviewItems}
           </ul>

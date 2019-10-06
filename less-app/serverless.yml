@@ -40,6 +40,27 @@ functions:
         path: dandelete           
         method: delete
         cors: true
+  mayAdd:
+    handler: mayadd.run
+    events:        
+    - http:            
+        path: mayadd           
+        method: post
+        cors: true
+  mayGet:
+    handler: mayget.run
+    events:        
+    - http:            
+        path: mayget           
+        method: get
+        cors: true
+  mayDelete:
+    handler: maydelete.run
+    events:        
+    - http:            
+        path: maydelete           
+        method: delete
+        cors: true
   removeReview:
     handler: remove.run
     events:        
@@ -80,6 +101,19 @@ resources:
       Type: 'AWS::DynamoDB::Table'       
       Properties:        
         TableName: dantable        
+        AttributeDefinitions:           
+          - AttributeName: id             
+            AttributeType: S         
+        KeySchema:           
+          - AttributeName: id             
+            KeyType: HASH         
+        ProvisionedThroughput:            
+          ReadCapacityUnits: 1           
+          WriteCapacityUnits: 1
+    MayTable:       
+      Type: 'AWS::DynamoDB::Table'       
+      Properties:        
+        TableName: maytable        
         AttributeDefinitions:           
           - AttributeName: id             
             AttributeType: S         

@@ -32,6 +32,7 @@ class TopFive extends React.Component {
             review={review} 
             index={index} 
             key={review.name}
+            table={'dan'}
             fetchNewData={this.props.fetchNewData}
           />
         )
