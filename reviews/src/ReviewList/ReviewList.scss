@@ -106,11 +106,13 @@
   .reviewlist-list-holder {
     padding: 0;
   }
-  .reviewlist-item-container {
-    width: auto;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 20px;
+  .reviewlist-list {
+    .reviewlist-item-container {
+      width: auto !important;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 20px;
+    }
   }
   .reviewlist-item-adddan {
     display: none;

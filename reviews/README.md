@@ -8,7 +8,7 @@ When in the reviews directory:
 
 then 
 
-`aws s3 sync build/ s3://restaurant-reviews1294 --profile daneversen`
+`aws s3 sync build/ s3://caelar-eats.com --profile daneversen`
 
 ### How to update the Lambda functions
 
