@@ -100,3 +100,22 @@
     font-size: 1.6em;
     color: #42a5f5;
 }
+
+@media screen and (max-width: 500px) {
+
+  .reviewlist-list-holder {
+    padding: 0;
+  }
+  .reviewlist-item-container {
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
+  .reviewlist-item-adddan {
+    display: none;
+  }
+  .reviewlist-item-addmay {
+    display: none;
+  }
+}

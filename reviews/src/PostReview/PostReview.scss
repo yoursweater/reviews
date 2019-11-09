@@ -34,3 +34,9 @@
     display: flex;
     justify-content: center;
 }
+
+@media screen and (max-width: 500px) {
+  .left-post {
+    width: 100%;
+  }
+}

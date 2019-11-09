@@ -36,7 +36,18 @@
     padding: 0;
     box-sizing: border-box;
   }
+}
 
+@media screen and (max-width: 500px) {
+  .app-container {
+    .left-section {
+      display: none;
+    }
+    .right-section {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
 }
 
 
