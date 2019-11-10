@@ -14,7 +14,7 @@ class PostReview extends React.Component {
     super(props)
     this.state = {
       name: '',
-      stars: '',
+      stars: '1',
       topfive: '0',
       maytopfive: '0',
       wallofshame: '0',
