@@ -7,6 +7,7 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import Select from '@material-ui/core/Select'
+var FontAwesome = require('react-fontawesome')
 
 class PostReview extends React.Component {
   constructor(props) {
@@ -83,7 +84,6 @@ class PostReview extends React.Component {
               variant="outlined"
             />
             <br />
-
             <NativeSelect
               variant="outlined"
               fullWidth
@@ -94,41 +94,16 @@ class PostReview extends React.Component {
                 id: 'stars-select',
               }}
             >
-              <option value={1}>&#9733;</option>
-              <option value={2}>&#9733;&#9733;</option>
-              <option value={3}>&#9733;&#9733;&#9733;</option>
-              <option value={4}>&#9733;&#9733;&#9733;&#9733;</option>
-              <option value={5}>&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+              <option value={1}>1 star</option>
+              <option value={1.5}>1.5 stars</option>
+              <option value={2}>2 stars</option>
+              <option value={2.5}>2.5 stars</option>
+              <option value={3}>3 stars</option>
+              <option value={3.5}>3.5 stars</option>
+              <option value={4}>4 stars</option>
+              <option value={4.5}>4.5 stars</option>
+              <option value={5}>5 stars</option>
             </NativeSelect>
-            {/* 
-            <TextField
-              label="Stars"
-              select
-              value={this.state.stars}
-              name="stars"
-              fullWidth
-              onChange={this.handleChange}
-              margin="dense"
-              variant="outlined"
-              className="stars-select"
-              id="stars-select"
-            >
-              <option key="1" value="1">
-                &#9733;
-              </option>
-              <option key="2" value="2">
-                &#9733;&#9733;
-              </option>
-              <option key="3" value="3">
-                &#9733;&#9733;&#9733;
-              </option>
-              <option key="4" value="4">
-                &#9733;&#9733;&#9733;&#9733;
-              </option>
-              <option key="5" value="5">
-                &#9733;&#9733;&#9733;&#9733;&#9733;
-              </option>
-            </TextField> */}
             <br />
 
             <TextField
@@ -154,21 +129,6 @@ class PostReview extends React.Component {
             />
             <br />
 
-            {/* <Select
-              fullWidth
-              label="Price"
-              value={this.state.price}
-              onChange={this.handleChange}
-              name="price"
-              margin="dense"
-              variant="outlined"
-            >
-              <MenuItem value={1}>$</MenuItem>
-              <MenuItem value={2}>$$</MenuItem>
-              <MenuItem value={3}>$$$</MenuItem>
-              <MenuItem value={4}>$$$$</MenuItem>
-            </Select> */}
-
             <NativeSelect
               variant="outlined"
               fullWidth
@@ -184,30 +144,6 @@ class PostReview extends React.Component {
               <option value={3}>$$$</option>
               <option value={4}>$$$$</option>
             </NativeSelect>
-
-            {/* <TextField
-              label="Price"
-              select
-              value={this.state.price}
-              name="price"
-              fullWidth
-              onChange={this.handleChange}
-              margin="dense"
-              variant="outlined"
-            >
-              <option key="1" value="1">
-                $
-              </option>
-              <option key="2" value="2">
-                $$
-              </option>
-              <option key="3" value="3">
-                $$$
-              </option>
-              <option key="4" value="4">
-                $$$$
-              </option>
-            </TextField> */}
             <br />
             <TextField
               label="Location"

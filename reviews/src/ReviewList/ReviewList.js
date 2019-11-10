@@ -1,6 +1,8 @@
 import React from 'react'
 import './ReviewList.scss'
 import ReviewFilter from './ReviewFilter/ReviewFilter'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+var FontAwesome = require('react-fontawesome')
 
 class ReviewList extends React.Component {
   state = {
@@ -16,11 +18,20 @@ class ReviewList extends React.Component {
   }
 
   makeStars(stars) {
-    let starString = ''
-    for (let i = 0; i < stars; i++) {
-      starString = starString + String.fromCharCode(9733)
+    let starArr = []
+    let halfstar = false
+    let starsnum = stars
+    if (stars % 1 !== 0) {
+      halfstar = true
+      starsnum = starsnum - 1
     }
-    return starString
+    for (let i = 0; i < starsnum; i++) {
+      starArr.push(<FontAwesome className="super-crazy-colors" name="star" size="1x" />)
+    }
+    if (halfstar) {
+      starArr.push(<FontAwesome className="super-crazy-colors" name="star-half" size="1x" />)
+    }
+    return starArr
   }
 
   executeFilter = star => {
@@ -81,7 +92,7 @@ class ReviewList extends React.Component {
 
     if (this.state.filter != null) {
       filteredItems = filteredItems.filter(review => {
-        return review.stars == (this.state.filter + 1).toString()
+        return Number(review.stars) >= this.state.filter + 1 && Number(review.stars) < this.state.filter + 2
       })
     }
 
@@ -110,7 +121,7 @@ class ReviewList extends React.Component {
               <span className="delete-btn" onClick={() => this.deleteEntry(review.id)}>
                 X
               </span>
-              {this.makeStars.call(this, review.stars)}
+              <span>{this.makeStars.call(this, review.stars)}</span>
               <span className="stars-label">
                 {review.stars} star{review.stars > 1 ? 's' : null}
               </span>
