@@ -62,6 +62,7 @@ class DraggableFive extends Component {
         newOrderString += item.content + ','
     })
     console.log(newOrderString)
+    
 
     // this.setState({
     //   items
