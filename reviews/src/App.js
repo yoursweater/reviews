@@ -6,6 +6,67 @@ import TopFive from './TopFive/TopFive'
 import MayTopFive from './TopFive/MayTopFive'
 import PostReview from './PostReview/PostReview'
 import './App.scss'
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
+function FormDialog() {
+  const [open, setOpen] = React.useState(true);
+  const [text, setText] = React.useState('');
+
+  const handleSubmit = () => {
+    if (text === 'branwen') {
+      setOpen(false);
+    }
+    console.log('my text: ', text)
+    setText('')
+  };
+
+  const handleClose = () => {
+    setOpen(true);
+  };
+
+  const handleChange = (e) => {
+    setText(e.target.value)
+  }
+
+  return (
+    <div>
+      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Open form dialog
+      </Button> */}
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Enter password to continue.</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+           {/* Please enter the password. */}
+          </DialogContentText>
+          <TextField
+            autoFocus
+            value={text}
+            margin="dense"
+            id="password"
+            label="Password"
+            type="password"
+            onChange={handleChange}
+            fullWidth
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleSubmit} color="primary">
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+}
+
+
 
 class App extends Component {
   constructor(props) {
@@ -60,6 +121,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <FormDialog />
         <div id="main">
           <h1 className="app-header">Dan and May's Restaurant Reviews</h1>
           <div className="app-container">
