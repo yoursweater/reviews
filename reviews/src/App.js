@@ -13,9 +13,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import DraggableFive from './DraggableFive/DraggableFive'
 
 function FormDialog() {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const [text, setText] = React.useState('');
 
   const handleSubmit = () => {
@@ -98,8 +99,17 @@ class App extends Component {
         })
           .then(res => res.json())
           .then(data => {
+
+            let listItems = []
+            let order = data.Items.filter(item => item.id === 'tableorder')[0].name.split(',').map((rev, idx) => ({
+                id: `item-${idx}`,
+                content: rev
+            }))
+            listItems = order
+
             this.setState({
               dantop: data.Items,
+              listItems
             })
             fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/mayget', {
               method: 'GET',
@@ -128,12 +138,13 @@ class App extends Component {
             <div className="inner-app-container">
               <div className="left-section">
                 <TopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} />
-                <MayTopFive
+                <DraggableFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} listItems={this.state.listItems} />
+                {/* <MayTopFive
                   fetchNewData={this.fetchNewData}
                   reviews={this.state.reviews}
                   dantop={this.state.dantop}
                   maytop={this.state.maytop}
-                />
+                /> */}
                 {/* <WallOfShame reviews={this.state.reviews} /> */}
               </div>
               <div className="right-section">

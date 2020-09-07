@@ -20,7 +20,9 @@ class TopFive extends React.Component {
 
     makeReviews(reviews) {
 
-      let sorted = reviews.sort((a, b) => {
+      let filtered = reviews.filter(item => item.id !== 'tableorder')
+
+      let sorted = filtered.sort((a, b) => {
         return Number(a.rank) - Number(b.rank)
       })
 
