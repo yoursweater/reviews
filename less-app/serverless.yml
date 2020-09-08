@@ -1,7 +1,7 @@
-service: review-app
+service: review-app2
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
   iamRoleStatements:
   - Effect: Allow
     Action:
@@ -12,114 +12,12 @@ provider:
     Resource: '*'
 
 functions:
-  createReview:
-    handler: create.run
+  editOrderV2:
+    handler: editorder.run
     events:        
     - http:            
-        path: reviews           
+        path: editorder           
         method: post
-        cors: true
-  danAdd:
-    handler: danadd.run
-    events:        
-    - http:            
-        path: dantable           
-        method: post
-        cors: true
-  danGet:
-    handler: danget.run
-    events:        
-    - http:            
-        path: danget           
-        method: get
-        cors: true
-  danDelete:
-    handler: dandelete.run
-    events:        
-    - http:            
-        path: dandelete           
-        method: delete
-        cors: true
-  mayAdd:
-    handler: mayadd.run
-    events:        
-    - http:            
-        path: mayadd           
-        method: post
-        cors: true
-  mayGet:
-    handler: mayget.run
-    events:        
-    - http:            
-        path: mayget           
-        method: get
-        cors: true
-  mayDelete:
-    handler: maydelete.run
-    events:        
-    - http:            
-        path: maydelete           
-        method: delete
-        cors: true
-  removeReview:
-    handler: remove.run
-    events:        
-    - http:            
-        path: reviews           
-        method: delete
-        cors: true
-  retrieveReview:
-    handler: retrieve.run
-    events:        
-    - http:            
-        path: reviews           
-        method: get
-        cors: true
-  swapReview:
-    handler: swap.run
-    events:        
-    - http:            
-        path: reviews           
-        method: put
-        cors: true
-resources:   
-  Resources:     
-    ReviewTable:       
-      Type: 'AWS::DynamoDB::Table'       
-      Properties:        
-        TableName: restaurantreviews        
-        AttributeDefinitions:           
-          - AttributeName: id             
-            AttributeType: S         
-        KeySchema:           
-          - AttributeName: id             
-            KeyType: HASH         
-        ProvisionedThroughput:            
-          ReadCapacityUnits: 1           
-          WriteCapacityUnits: 1    
-    DanTable:       
-      Type: 'AWS::DynamoDB::Table'       
-      Properties:        
-        TableName: dantable        
-        AttributeDefinitions:           
-          - AttributeName: id             
-            AttributeType: S         
-        KeySchema:           
-          - AttributeName: id             
-            KeyType: HASH         
-        ProvisionedThroughput:            
-          ReadCapacityUnits: 1           
-          WriteCapacityUnits: 1
-    MayTable:       
-      Type: 'AWS::DynamoDB::Table'       
-      Properties:        
-        TableName: maytable        
-        AttributeDefinitions:           
-          - AttributeName: id             
-            AttributeType: S         
-        KeySchema:           
-          - AttributeName: id             
-            KeyType: HASH         
-        ProvisionedThroughput:            
-          ReadCapacityUnits: 1           
-          WriteCapacityUnits: 1
+        cors:
+          origins:
+            - "*"

@@ -62,11 +62,20 @@ class DraggableFive extends Component {
         newOrderString += item.content + ','
     })
     console.log(newOrderString)
-    
 
-    // this.setState({
-    //   items
-    // });
+    let url = 'https://syrky3ilk6.execute-api.us-east-1.amazonaws.com/prod/editorder'
+    fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify({
+            id: 'tableorder',
+            order: newOrderString,
+            table: 'dantable'
+        })
+    }).then(()=>{
+        this.props.fetchNewData()
+    })
+
   }
 
 
