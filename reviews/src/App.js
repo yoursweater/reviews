@@ -168,6 +168,7 @@ class App extends Component {
                   dantop={this.state.dantop}
                   maytop={this.state.maytop}
                   listItems={this.state.listItems}
+                  mayItems={this.state.mayItems}
                 />
               </div>
             </div>

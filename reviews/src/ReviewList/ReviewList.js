@@ -79,18 +79,26 @@ class ReviewList extends React.Component {
 
   }
 
-  addMay(name) {
-    let event = {
-      name: name,
-      rank: this.props.dantop.length + 1,
-    }
-    event = JSON.stringify(event)
-    fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/mayadd', {
-      method: 'POST',
-      mode: 'cors',
-      body: event,
-    }).then(() => {
-      this.props.fetchNewData()
+  addMay(name, props) {
+    const nonEmptyItems = props.mayItems.filter(item => item.content !== "")
+
+    let newOrderString = ''
+    nonEmptyItems.forEach(item => {
+        newOrderString += item.content + ','
+    })
+    newOrderString += name
+
+    let url = 'https://syrky3ilk6.execute-api.us-east-1.amazonaws.com/prod/editorder'
+    fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify({
+            id: 'maytableorder',
+            order: newOrderString,
+            table: 'dantable'
+        })
+    }).then(()=>{
+        props.fetchNewData()
     })
   }
 
@@ -124,7 +132,7 @@ class ReviewList extends React.Component {
             <div onClick={() => this.addDan(review.name, this.props)} className="reviewlist-item-adddan">
               <p>Add to Dan's Favs</p>
             </div>
-            <div onClick={() => this.addMay(review.name)} className="reviewlist-item-addmay">
+            <div onClick={() => this.addMay(review.name, this.props)} className="reviewlist-item-addmay">
               <p>Add to May's Favs</p>
             </div>
             <div className="reviewlist-item-stars">
