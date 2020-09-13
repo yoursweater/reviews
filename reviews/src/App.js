@@ -83,8 +83,9 @@ class App extends Component {
     this.fetchNewData()
   }
 
-  setListItems = (listItems) => {
-    this.setState({listItems})
+  setListItems = (listItems, isDan) => {
+    if (isDan) this.setState({listItems});
+    if (!isDan) this.setState({mayItems: listItems})
   }
 
   fetchNewData = () => {
@@ -111,9 +112,17 @@ class App extends Component {
             }))
             listItems = order
 
+            let mayItems = []
+            let orderTwo = data.Items.filter(item => item.id === 'maytableorder')[0].name.split(',').map((rev, idx) => ({
+                id: `item-${idx}`,
+                content: rev
+            }))
+            mayItems = orderTwo
+
             this.setState({
               dantop: data.Items,
-              listItems
+              listItems,
+              mayItems
             })
             fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/mayget', {
               method: 'GET',
@@ -142,7 +151,8 @@ class App extends Component {
             <div className="inner-app-container">
               <div className="left-section">
                 {/* <TopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} /> */}
-                <DraggableFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} listItems={this.state.listItems} setListItems={this.setListItems} />
+                <DraggableFive isDan={true} fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} listItems={this.state.listItems} setListItems={this.setListItems} />
+                <DraggableFive isDan={false} fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} listItems={this.state.mayItems} setListItems={this.setListItems} />
                 {/* <MayTopFive
                   fetchNewData={this.fetchNewData}
                   reviews={this.state.reviews}

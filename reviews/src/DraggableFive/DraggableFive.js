@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import {Icon} from '@material-ui/core'
+import {v4 as uuidv4} from 'uuid'
 
 
 // a little function to help us with reordering the result
@@ -61,7 +62,7 @@ class DraggableFive extends Component {
     );
 
     console.log('REORDERED ITEMS: ', items)
-    props.setListItems(items)
+    props.setListItems(items, props.isDan)
 
     const nonEmptyItems = items.filter(item => item.content !== "")
 
@@ -78,7 +79,7 @@ class DraggableFive extends Component {
         method: 'POST',
         mode: 'cors',
         body: JSON.stringify({
-            id: 'tableorder',
+            id: props.isDan ? 'tableorder' : 'maytableorder',
             order: newOrderString,
             table: 'dantable'
         })
@@ -94,7 +95,7 @@ class DraggableFive extends Component {
 
     const nonEmptyItems = props.listItems.filter(item => item.content !== "")
     const removedItems = nonEmptyItems.filter(item => item.content !== itemName)
-    props.setListItems(removedItems)
+    props.setListItems(removedItems, props.isDan)
 
     let newOrderString = ''
     removedItems.forEach(item => {
@@ -109,7 +110,7 @@ class DraggableFive extends Component {
         method: 'POST',
         mode: 'cors',
         body: JSON.stringify({
-            id: 'tableorder',
+            id: props.isDan ? 'tableorder' : 'maytableorder',
             order: newOrderString,
             table: 'dantable'
         })
@@ -123,7 +124,7 @@ class DraggableFive extends Component {
       
     return (
       <React.Fragment>
-        <h3 className='topfive-title'>Dan's Top Restaurants</h3>
+        <h3 className='topfive-title'>{this.props.isDan ? "Dan's" : "May's"} Top Restaurants</h3>
         <DragDropContext onDragEnd={e => this.onDragEnd(e, this.props)}>
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
@@ -133,7 +134,7 @@ class DraggableFive extends Component {
                 style={getListStyle(snapshot.isDraggingOver)}
               >
                 {this.props.listItems && this.props.listItems.map((item, index) => (
-                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                  <Draggable key={uuidv4()} draggableId={item.id} index={index}>
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
