@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 // import logo from './logo.svg';
-import WallOfShame from './WallOfShame/WallOfShame'
 import ReviewList from './ReviewList/ReviewList'
-import TopFive from './TopFive/TopFive'
-import MayTopFive from './TopFive/MayTopFive'
 import PostReview from './PostReview/PostReview'
 import './App.scss'
 import Button from '@material-ui/core/Button';
@@ -37,9 +34,6 @@ function FormDialog() {
 
   return (
     <div>
-      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open form dialog
-      </Button> */}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Enter password to continue.</DialogTitle>
         <DialogContent>
@@ -150,15 +144,11 @@ class App extends Component {
           <div className="app-container">
             <div className="inner-app-container">
               <div className="left-section">
-                {/* <TopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} /> */}
+                {/* DAN - listItems set to default listItems */}
                 <DraggableFive isDan={true} fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} listItems={this.state.listItems} setListItems={this.setListItems} />
+                {/* MAY - listItems set to mayItems */}
                 <DraggableFive isDan={false} fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} listItems={this.state.mayItems} setListItems={this.setListItems} />
-                {/* <MayTopFive
-                  fetchNewData={this.fetchNewData}
-                  reviews={this.state.reviews}
-                  dantop={this.state.dantop}
-                  maytop={this.state.maytop}
-                /> */}
+
                 {/* <WallOfShame reviews={this.state.reviews} /> */}
               </div>
               <div className="right-section">
