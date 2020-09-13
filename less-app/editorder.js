@@ -8,7 +8,7 @@ module.exports.run = async (event) => {
     const params = {
         TableName: data.table,
         Key:{
-            "id": "tableorder"
+            "id": data.id
         },
         UpdateExpression: "set #name = :name",
         ExpressionAttributeNames:{

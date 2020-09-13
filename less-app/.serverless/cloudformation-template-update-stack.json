@@ -154,7 +154,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/review-app2/dev/1599586199061-2020-09-08T17:29:59.061Z/review-app2.zip"
+          "S3Key": "serverless/review-app2/dev/1600013530048-2020-09-13T16:12:10.048Z/review-app2.zip"
         },
         "FunctionName": "review-app2-dev-editOrderV2",
         "Handler": "editorder.run",
@@ -173,14 +173,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "EditOrderV2LambdaVersionbDiuwDkU2rRpBr77eocxRd81LSscf8t3lm3YvlAk": {
+    "EditOrderV2LambdaVersionRKxIpmPxtiUj0iqp4Y1G5zDcmLk0D9sXpspu8Vk0M": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "EditOrderV2LambdaFunction"
         },
-        "CodeSha256": "Qn/qJk6p8o4i+D7G0p5u6so8jGNo8SxnyLYb3vyKAB4="
+        "CodeSha256": "6MFyoBbNMpJnfRNlSmA7XvMvobe72wHF0kBz0ChTz4M="
       }
     },
     "ApiGatewayRestApi": {
@@ -298,7 +298,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1599586196469": {
+    "ApiGatewayDeployment1600013526957": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -358,7 +358,7 @@
     "EditOrderV2LambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "EditOrderV2LambdaVersionbDiuwDkU2rRpBr77eocxRd81LSscf8t3lm3YvlAk"
+        "Ref": "EditOrderV2LambdaVersionRKxIpmPxtiUj0iqp4Y1G5zDcmLk0D9sXpspu8Vk0M"
       }
     },
     "ServiceEndpoint": {
