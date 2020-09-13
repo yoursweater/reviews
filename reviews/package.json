@@ -15,7 +15,8 @@
     "react-dom": "^16.6.3",
     "react-dragula": "^1.1.17",
     "react-fontawesome": "^1.7.1",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "uuid": "^8.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

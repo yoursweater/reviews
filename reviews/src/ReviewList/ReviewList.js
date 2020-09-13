@@ -1,6 +1,7 @@
 import React from 'react'
 import './ReviewList.scss'
 import ReviewFilter from './ReviewFilter/ReviewFilter'
+import { v4 as uuidv4 } from 'uuid'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 var FontAwesome = require('react-fontawesome')
 
@@ -26,10 +27,10 @@ class ReviewList extends React.Component {
       starsnum = starsnum - 1
     }
     for (let i = 0; i < starsnum; i++) {
-      starArr.push(<FontAwesome className="super-crazy-colors" name="star" size="1x" />)
+      starArr.push(<FontAwesome key={uuidv4()} className="super-crazy-colors" name="star"  />)
     }
     if (halfstar) {
-      starArr.push(<FontAwesome className="super-crazy-colors" name="star-half" size="1x" />)
+      starArr.push(<FontAwesome key={uuidv4()} className="super-crazy-colors" name="star-half"  />)
     }
     return starArr
   }
@@ -99,7 +100,7 @@ class ReviewList extends React.Component {
     //create the list items for display
     const reviewItems = filteredItems.map(review => {
       return (
-        <li className="reviewlist-list" key={review.id}>
+        <li key={uuidv4()} className="reviewlist-list" >
           <div className="reviewlist-item-container">
             <div className="reviewlist-item-name">
               <h4 className="reviewlist-name">{review.name}</h4>
