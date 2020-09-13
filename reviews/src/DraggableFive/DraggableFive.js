@@ -122,37 +122,40 @@ class DraggableFive extends Component {
   render() {
       
     return (
-      <DragDropContext onDragEnd={e => this.onDragEnd(e, this.props)}>
-        <Droppable droppableId="droppable">
-          {(provided, snapshot) => (
-            <div
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-              style={getListStyle(snapshot.isDraggingOver)}
-            >
-              {this.props.listItems && this.props.listItems.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      style={getItemStyle(
-                        snapshot.isDragging,
-                        provided.draggableProps.style
-                      )}
-                    >
-                      <span style={{paddingRight: 10, fontWeight: 800, color: 'rgb(0, 112, 26)'}}>{index + 1}.</span>{item.content}
-                      <span style={{float: 'right'}}><HighlightOffIcon onClick={e => this.removeListItem(item.content, this.props)} /></span>
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
+      <React.Fragment>
+        <h3 className='topfive-title'>Dan's Top Restaurants</h3>
+        <DragDropContext onDragEnd={e => this.onDragEnd(e, this.props)}>
+          <Droppable droppableId="droppable">
+            {(provided, snapshot) => (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+              >
+                {this.props.listItems && this.props.listItems.map((item, index) => (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={getItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style
+                        )}
+                      >
+                        <span style={{paddingRight: 10, fontWeight: 800, color: 'rgb(0, 112, 26)'}}>{index + 1}.</span>{item.content}
+                        <span style={{float: 'right'}}><HighlightOffIcon onClick={e => this.removeListItem(item.content, this.props)} /></span>
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
       </DragDropContext>
+      </React.Fragment>
     );
   }
 }

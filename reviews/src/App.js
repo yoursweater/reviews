@@ -141,7 +141,7 @@ class App extends Component {
           <div className="app-container">
             <div className="inner-app-container">
               <div className="left-section">
-                <TopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} />
+                {/* <TopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} /> */}
                 <DraggableFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} listItems={this.state.listItems} setListItems={this.setListItems} />
                 {/* <MayTopFive
                   fetchNewData={this.fetchNewData}
