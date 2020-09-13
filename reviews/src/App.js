@@ -157,6 +157,7 @@ class App extends Component {
                   reviews={this.state.reviews}
                   dantop={this.state.dantop}
                   maytop={this.state.maytop}
+                  listItems={this.state.listItems}
                 />
               </div>
             </div>
