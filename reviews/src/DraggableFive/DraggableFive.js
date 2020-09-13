@@ -43,7 +43,7 @@ class DraggableFive extends Component {
   }
 
 
-  onDragEnd(result) {
+  onDragEnd(result, props) {
     // dropped outside the list
     if (!result.destination) {
       return;
@@ -56,6 +56,7 @@ class DraggableFive extends Component {
     );
 
     console.log('REORDERED ITEMS: ', items)
+    props.setListItems(items)
 
     const nonEmptyItems = items.filter(item => item.content !== "")
 
@@ -64,7 +65,7 @@ class DraggableFive extends Component {
         newOrderString += item.content + ','
     })
     console.log(newOrderString)
-    newOrderString = newOrderString.slice(0, newOrderString.length - 2)
+    newOrderString = newOrderString.slice(0, newOrderString.length - 1)
     console.log('edited!')
 
     let url = 'https://syrky3ilk6.execute-api.us-east-1.amazonaws.com/prod/editorder'
@@ -84,10 +85,9 @@ class DraggableFive extends Component {
 
 
   render() {
-
       
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
+      <DragDropContext onDragEnd={e => this.onDragEnd(e, this.props)}>
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (
             <div

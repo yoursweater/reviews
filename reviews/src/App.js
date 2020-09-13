@@ -83,6 +83,10 @@ class App extends Component {
     this.fetchNewData()
   }
 
+  setListItems = (listItems) => {
+    this.setState({listItems})
+  }
+
   fetchNewData = () => {
     fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/reviews', {
       method: 'GET',
@@ -138,7 +142,7 @@ class App extends Component {
             <div className="inner-app-container">
               <div className="left-section">
                 <TopFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} />
-                <DraggableFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} listItems={this.state.listItems} />
+                <DraggableFive fetchNewData={this.fetchNewData} reviews={this.state.reviews} dantop={this.state.dantop} listItems={this.state.listItems} setListItems={this.setListItems} />
                 {/* <MayTopFive
                   fetchNewData={this.fetchNewData}
                   reviews={this.state.reviews}
