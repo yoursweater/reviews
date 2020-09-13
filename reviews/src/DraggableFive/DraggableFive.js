@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import {Icon} from '@material-ui/core'
 
 
 // a little function to help us with reordering the result
@@ -86,6 +88,36 @@ class DraggableFive extends Component {
 
   }
 
+  removeListItem = (itemName, props) => {
+    console.log(itemName)
+    console.log(props)
+
+    const nonEmptyItems = props.listItems.filter(item => item.content !== "")
+    const removedItems = nonEmptyItems.filter(item => item.content !== itemName)
+    props.setListItems(removedItems)
+
+    let newOrderString = ''
+    removedItems.forEach(item => {
+        newOrderString += item.content + ','
+    })
+    console.log(newOrderString)
+    newOrderString = newOrderString.slice(0, newOrderString.length - 1)
+    console.log('edited!')
+
+    let url = 'https://syrky3ilk6.execute-api.us-east-1.amazonaws.com/prod/editorder'
+    fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify({
+            id: 'tableorder',
+            order: newOrderString,
+            table: 'dantable'
+        })
+    }).then(()=>{
+        this.props.fetchNewData()
+    })
+  }
+
 
   render() {
       
@@ -110,7 +142,8 @@ class DraggableFive extends Component {
                         provided.draggableProps.style
                       )}
                     >
-                      {item.content}
+                      <span style={{paddingRight: 10, fontWeight: 800, color: 'rgb(0, 112, 26)'}}>{index + 1}.</span>{item.content}
+                      <span style={{float: 'right'}}><HighlightOffIcon onClick={e => this.removeListItem(item.content, this.props)} /></span>
                     </div>
                   )}
                 </Draggable>
