@@ -35,7 +35,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? "lightblue" : "white",
   padding: grid,
-  width: 250
+  margin: 20
 });
 
 class DraggableFive extends Component {
