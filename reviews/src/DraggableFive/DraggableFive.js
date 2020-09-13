@@ -57,11 +57,15 @@ class DraggableFive extends Component {
 
     console.log('REORDERED ITEMS: ', items)
 
+    const nonEmptyItems = items.filter(item => item.content !== "")
+
     let newOrderString = ''
-    items.forEach(item => {
+    nonEmptyItems.forEach(item => {
         newOrderString += item.content + ','
     })
     console.log(newOrderString)
+    newOrderString = newOrderString.slice(0, newOrderString.length - 2)
+    console.log('edited!')
 
     let url = 'https://syrky3ilk6.execute-api.us-east-1.amazonaws.com/prod/editorder'
     fetch(url, {
