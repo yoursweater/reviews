@@ -56,9 +56,6 @@ class ReviewList extends React.Component {
   }
 
   addDan(name, props) {
-    console.log('adding: ', name)
-    console.log('muhhhh props: ', props)
-
     const nonEmptyItems = props.listItems.filter(item => item.content !== "")
 
     let newOrderString = ''
@@ -80,21 +77,6 @@ class ReviewList extends React.Component {
         props.fetchNewData()
     })
 
-
-
-
-    // let event = {
-    //   name: name,
-    //   rank: this.props.dantop.length + 1,
-    // }
-    // event = JSON.stringify(event)
-    // fetch('https://rw1gy0pc51.execute-api.us-east-1.amazonaws.com/dev/dantable', {
-    //   method: 'POST',
-    //   mode: 'cors',
-    //   body: event,
-    // }).then(() => {
-    //   this.props.fetchNewData()
-    // })
   }
 
   addMay(name) {
