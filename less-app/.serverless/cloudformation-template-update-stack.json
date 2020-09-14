@@ -62,6 +62,12 @@
         "LogGroupName": "/aws/lambda/review-app2-dev-editOrderV2"
       }
     },
+    "ReviewsV2LogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/review-app2-dev-reviewsV2"
+      }
+    },
     "IamRoleLambdaExecution": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -154,7 +160,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/review-app2/dev/1600013530048-2020-09-13T16:12:10.048Z/review-app2.zip"
+          "S3Key": "serverless/review-app2/dev/1600083186761-2020-09-14T11:33:06.761Z/review-app2.zip"
         },
         "FunctionName": "review-app2-dev-editOrderV2",
         "Handler": "editorder.run",
@@ -173,14 +179,50 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "EditOrderV2LambdaVersionRKxIpmPxtiUj0iqp4Y1G5zDcmLk0D9sXpspu8Vk0M": {
+    "EditOrderV2LambdaVersionW0TN4yEaKsM69xd72ZiheYczX7acwTT1yZNq2Ng9vFg": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "EditOrderV2LambdaFunction"
         },
-        "CodeSha256": "6MFyoBbNMpJnfRNlSmA7XvMvobe72wHF0kBz0ChTz4M="
+        "CodeSha256": "glZi73Nj1Yx9mG1Poh9wxEl7V4V2JwbpRi+gi+tQTcY="
+      }
+    },
+    "ReviewsV2LambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/review-app2/dev/1600083186761-2020-09-14T11:33:06.761Z/review-app2.zip"
+        },
+        "FunctionName": "review-app2-dev-reviewsV2",
+        "Handler": "create.run",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "Timeout": 6
+      },
+      "DependsOn": [
+        "ReviewsV2LogGroup",
+        "IamRoleLambdaExecution"
+      ]
+    },
+    "ReviewsV2LambdaVersionhJhSAnmjJSeFFal1p6LDlPEhVsLaAtVUSFomlVC4": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ReviewsV2LambdaFunction"
+        },
+        "CodeSha256": "glZi73Nj1Yx9mG1Poh9wxEl7V4V2JwbpRi+gi+tQTcY="
       }
     },
     "ApiGatewayRestApi": {
@@ -205,6 +247,21 @@
           ]
         },
         "PathPart": "editorder",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceReviews": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "reviews",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -255,6 +312,51 @@
         }
       }
     },
+    "ApiGatewayMethodReviewsOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".*\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceReviews"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
     "ApiGatewayMethodEditorderPost": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
@@ -298,7 +400,50 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1600013526957": {
+    "ApiGatewayMethodReviewsPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceReviews"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "ReviewsV2LambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayDeployment1600083183679": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -308,7 +453,9 @@
       },
       "DependsOn": [
         "ApiGatewayMethodEditorderOptions",
-        "ApiGatewayMethodEditorderPost"
+        "ApiGatewayMethodReviewsOptions",
+        "ApiGatewayMethodEditorderPost",
+        "ApiGatewayMethodReviewsPost"
       ]
     },
     "EditOrderV2LambdaPermissionApiGateway": {
@@ -317,6 +464,43 @@
         "FunctionName": {
           "Fn::GetAtt": [
             "EditOrderV2LambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "ReviewsV2LambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ReviewsV2LambdaFunction",
             "Arn"
           ]
         },
@@ -358,7 +542,13 @@
     "EditOrderV2LambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "EditOrderV2LambdaVersionRKxIpmPxtiUj0iqp4Y1G5zDcmLk0D9sXpspu8Vk0M"
+        "Ref": "EditOrderV2LambdaVersionW0TN4yEaKsM69xd72ZiheYczX7acwTT1yZNq2Ng9vFg"
+      }
+    },
+    "ReviewsV2LambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ReviewsV2LambdaVersionhJhSAnmjJSeFFal1p6LDlPEhVsLaAtVUSFomlVC4"
       }
     },
     "ServiceEndpoint": {

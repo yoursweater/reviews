@@ -10,7 +10,7 @@ module.exports.run = async (event) => {
     const params = {
       TableName: "restaurantreviews",
       Item: {
-        id: uuid(),
+        id: data.id ? data.id : uuid(),
         name: data.name,
         stars: data.stars,
         topfive: data.topfive,

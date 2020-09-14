@@ -21,3 +21,10 @@ functions:
         cors:
           origins:
             - "*"
+  reviewsV2:
+    handler: create.run
+    events:        
+    - http:            
+        path: reviews           
+        method: post
+        cors: true

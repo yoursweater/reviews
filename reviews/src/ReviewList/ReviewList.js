@@ -7,14 +7,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee, faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons'
 // var FontAwesome = require('react-fontawesome')
 
-const updateReview = (event, review) => {
-  // console.log(event)
-  // console.log(review)
+const updateReview = (event, review, props) => {
+  let newReview
   if (event.type === 'changeStars') {
-    let newReview = {...review}
+    newReview = {...review}
+    if (event.value == 1) {
+      newReview.stars = event.value.toString()
+    } else {
+      newReview.stars = (event.value - 0.5).toString()
+    }
+  } else if (event.type === 'changeHalfStar') {
+    newReview = {...review}
     newReview.stars = event.value.toString()
-    console.log(newReview)
   }
+
+  let data = JSON.stringify(newReview)
+
+  fetch('https://syrky3ilk6.execute-api.us-east-1.amazonaws.com/dev/reviews', {
+    method: 'POST',
+    mode: 'cors',
+    body: data,
+  })
+  .then(function(response) {
+      return response.json()
+  })
+  .then(function(data) {
+      console.log('Successfully posted!')
+      console.log(data)
+      props.fetchNewData()
+  })
 }
 
 class ReviewList extends React.Component {
@@ -30,7 +51,7 @@ class ReviewList extends React.Component {
     return priceString
   }
 
-  makeStars(stars, review) {
+  makeStars(stars, review, props) {
     let starArr = []
     let halfstar = false
     let starsnum = stars
@@ -43,16 +64,16 @@ class ReviewList extends React.Component {
     for (let i = 0; i < starsnum; i++) {
       // starArr.push(<FontAwesomeIcon key={uuidv4()} className="super-crazy-colors" name="star"  />)
       starIndex += 1
-      starArr.push(<FontAwesomeIcon style={{cursor: 'pointer'}} onClick={(e) => {updateReview({type: 'changeStars', value: i + 1}, review)}} key={uuidv4()} className="super-crazy-colors" data-tag='test' name="star" icon={faStar} />)
+      starArr.push(<FontAwesomeIcon style={{cursor: 'pointer'}} onClick={(e) => {updateReview({type: 'changeStars', value: i + 1}, review, props)}} key={uuidv4()} className="super-crazy-colors" data-tag='test' name="star" icon={faStar} />)
     }
     if (halfstar) {
       // starArr.push(<FontAwesomeIcon key={uuidv4()} className="super-crazy-colors" name="star-half"  />)
       starIndex += 1
-      starArr.push(<FontAwesomeIcon style={{cursor: 'pointer'}} onClick={(e) => {updateReview({type: 'changeStars', value: starIndex}, review)}} key={uuidv4()} className="super-crazy-colors" name="star" icon={faStarHalf}  />)
+      starArr.push(<FontAwesomeIcon style={{cursor: 'pointer'}} onClick={(e) => {updateReview({type: 'changeHalfStar', value: starIndex}, review, props)}} key={uuidv4()} className="super-crazy-colors" name="star" icon={faStarHalf}  />)
     }
     for (let i = 0; i < emptyStars; i++) {
       let emptyIndex = starIndex + i + 1
-      starArr.push(<FontAwesomeIcon style={{cursor: 'pointer'}} onClick={(e) => {updateReview({type: 'changeStars', value: emptyIndex}, review)}}  key={uuidv4()} className="super-crazy-colors" name="star" icon={faStar} color='white' />)
+      starArr.push(<FontAwesomeIcon style={{cursor: 'pointer'}} onClick={(e) => {updateReview({type: 'changeStars', value: emptyIndex}, review, props)}}  key={uuidv4()} className="super-crazy-colors" name="star" icon={faStar} color='white' />)
     }
     return starArr
   }
@@ -161,7 +182,7 @@ class ReviewList extends React.Component {
               <span className="delete-btn" onClick={() => this.deleteEntry(review.id)}>
                 X
               </span>
-              <span>{this.makeStars.call(this, review.stars, review)}</span>
+              <span>{this.makeStars.call(this, review.stars, review, this.props)}</span>
               <span className="stars-label">
                 {review.stars} star{review.stars > 1 ? 's' : null}
               </span>
