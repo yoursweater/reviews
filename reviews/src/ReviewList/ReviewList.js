@@ -2,8 +2,20 @@ import React from 'react'
 import './ReviewList.scss'
 import ReviewFilter from './ReviewFilter/ReviewFilter'
 import { v4 as uuidv4 } from 'uuid'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-var FontAwesome = require('react-fontawesome')
+// import { FontAwesome } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee, faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons'
+// var FontAwesome = require('react-fontawesome')
+
+const updateReview = (event, review) => {
+  // console.log(event)
+  // console.log(review)
+  if (event.type === 'changeStars') {
+    let newReview = {...review}
+    newReview.stars = event.value.toString()
+    console.log(newReview)
+  }
+}
 
 class ReviewList extends React.Component {
   state = {
@@ -18,19 +30,29 @@ class ReviewList extends React.Component {
     return priceString
   }
 
-  makeStars(stars) {
+  makeStars(stars, review) {
     let starArr = []
     let halfstar = false
     let starsnum = stars
+    let emptyStars = Math.floor(5 - starsnum)
     if (stars % 1 !== 0) {
       halfstar = true
       starsnum = starsnum - 1
     }
+    let starIndex = 0
     for (let i = 0; i < starsnum; i++) {
-      starArr.push(<FontAwesome key={uuidv4()} className="super-crazy-colors" name="star"  />)
+      // starArr.push(<FontAwesomeIcon key={uuidv4()} className="super-crazy-colors" name="star"  />)
+      starIndex += 1
+      starArr.push(<FontAwesomeIcon style={{cursor: 'pointer'}} onClick={(e) => {updateReview({type: 'changeStars', value: i + 1}, review)}} key={uuidv4()} className="super-crazy-colors" data-tag='test' name="star" icon={faStar} />)
     }
     if (halfstar) {
-      starArr.push(<FontAwesome key={uuidv4()} className="super-crazy-colors" name="star-half"  />)
+      // starArr.push(<FontAwesomeIcon key={uuidv4()} className="super-crazy-colors" name="star-half"  />)
+      starIndex += 1
+      starArr.push(<FontAwesomeIcon style={{cursor: 'pointer'}} onClick={(e) => {updateReview({type: 'changeStars', value: starIndex}, review)}} key={uuidv4()} className="super-crazy-colors" name="star" icon={faStarHalf}  />)
+    }
+    for (let i = 0; i < emptyStars; i++) {
+      let emptyIndex = starIndex + i + 1
+      starArr.push(<FontAwesomeIcon style={{cursor: 'pointer'}} onClick={(e) => {updateReview({type: 'changeStars', value: emptyIndex}, review)}}  key={uuidv4()} className="super-crazy-colors" name="star" icon={faStar} color='white' />)
     }
     return starArr
   }
@@ -139,7 +161,7 @@ class ReviewList extends React.Component {
               <span className="delete-btn" onClick={() => this.deleteEntry(review.id)}>
                 X
               </span>
-              <span>{this.makeStars.call(this, review.stars)}</span>
+              <span>{this.makeStars.call(this, review.stars, review)}</span>
               <span className="stars-label">
                 {review.stars} star{review.stars > 1 ? 's' : null}
               </span>
