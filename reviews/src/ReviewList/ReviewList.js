@@ -98,8 +98,10 @@ class ReviewList extends React.Component {
     })
   }
 
-  addDan(name, props) {
-    const nonEmptyItems = props.listItems.filter(item => item.content !== "")
+  addReview(name, props, user) {
+    let nonEmptyItems
+    if (user === 'dan') nonEmptyItems = props.listItems.filter(item => item.content !== "");
+    if (user === 'may') nonEmptyItems = props.mayItems.filter(item => item.content !== "")
 
     let newOrderString = ''
     nonEmptyItems.forEach(item => {
@@ -112,7 +114,7 @@ class ReviewList extends React.Component {
         method: 'POST',
         mode: 'cors',
         body: JSON.stringify({
-            id: 'tableorder',
+            id: user === 'dan' ? 'tableorder' : 'maytableorder',
             order: newOrderString,
             table: 'dantable'
         })
@@ -172,10 +174,10 @@ class ReviewList extends React.Component {
             <div className="reviewlist-item-description">
               <p>{review.description}</p>
             </div>
-            <div onClick={() => this.addDan(review.name, this.props)} className="reviewlist-item-adddan">
+            <div onClick={() => this.addReview(review.name, this.props, 'dan')} className="reviewlist-item-adddan">
               <p>Add to Dan's Favs</p>
             </div>
-            <div onClick={() => this.addMay(review.name, this.props)} className="reviewlist-item-addmay">
+            <div onClick={() => this.addReview(review.name, this.props, 'may')} className="reviewlist-item-addmay">
               <p>Add to May's Favs</p>
             </div>
             <div className="reviewlist-item-stars">

@@ -13,7 +13,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DraggableFive from './DraggableFive/DraggableFive'
 
 function FormDialog() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const [text, setText] = React.useState('');
 
   const handleSubmit = () => {
