@@ -103,6 +103,12 @@ class ReviewList extends React.Component {
     if (user === 'dan') nonEmptyItems = props.listItems.filter(item => item.content !== "");
     if (user === 'may') nonEmptyItems = props.mayItems.filter(item => item.content !== "")
 
+    const exists = nonEmptyItems.find( el => {
+      return el.content === name
+    })
+
+    if (exists) return;
+
     let newOrderString = ''
     nonEmptyItems.forEach(item => {
         newOrderString += item.content + ','
@@ -122,29 +128,6 @@ class ReviewList extends React.Component {
         props.fetchNewData()
     })
 
-  }
-
-  addMay(name, props) {
-    const nonEmptyItems = props.mayItems.filter(item => item.content !== "")
-
-    let newOrderString = ''
-    nonEmptyItems.forEach(item => {
-        newOrderString += item.content + ','
-    })
-    newOrderString += name
-
-    let url = 'https://syrky3ilk6.execute-api.us-east-1.amazonaws.com/prod/editorder'
-    fetch(url, {
-        method: 'POST',
-        mode: 'cors',
-        body: JSON.stringify({
-            id: 'maytableorder',
-            order: newOrderString,
-            table: 'dantable'
-        })
-    }).then(()=>{
-        props.fetchNewData()
-    })
   }
 
   makeReviews(reviews) {
