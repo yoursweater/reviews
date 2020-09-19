@@ -155,7 +155,7 @@ class ReviewList extends React.Component {
               <p className="side-info">{this.makePricing.call(this, review.price)}</p>
             </div>
             <div className="reviewlist-item-description">
-              <p>{review.description}</p>
+              <textarea onBlur={(e) => console.log('blurrr', e.currentTarget.value)} style={{width: '100%', resize: 'none', border: 'none', marginRight: 10}}>{review.description}</textarea>
             </div>
             <div onClick={() => this.addReview(review.name, this.props, 'dan')} className="reviewlist-item-adddan">
               <p>Add to Dan's Favs</p>
